@@ -57,7 +57,7 @@ def set_message(scan_result):
 
 def lambda_handler(event, context):
     logger.info("Event: " + str(event))
-    HOOK_URL = "https://"
+    HOOK_URL = os.environ['HookUrl']
     MESSAGE = set_message(event)
     logger.info("Message: " + str(MESSAGE))
 
