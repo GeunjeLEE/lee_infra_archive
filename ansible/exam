@@ -1,0 +1,27 @@
+- hosts: dummy-linux
+  remote_user: centos
+  tasks:
+    - name: install apache
+      yum: name=httpd state=latest
+      sudo: yes
+    - name: run apache
+      service: name=httpd state=restarted
+      sudo: yes
+    - name: make sure apache is enable
+      service: name=httpd enabled=yes
+      sudo: yes
+    - name: create index.html
+      shell: touch /var/www/html/index.html
+      sudo: yes
+    - name: install salt-minion
+      yum: name=salt-minion state=latest
+      sudo: yes
+    - name: make sure salt-minion is running
+      service: name=salt-minion state=restarted
+      sudo: yes
+    - name: make sure salt-minion is enable
+      service: name=salt-minion enabled=yes
+      sudo: yes
+    - name: set salt-master
+      shell: "echo 'master 10.0.0.4' >| /etc/salt/minion"
+      sudo: yes

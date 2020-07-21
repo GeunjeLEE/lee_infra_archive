@@ -1,0 +1,29 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.box = "centos/7"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.customize ["modifyvm", :id, "--memory", "1024"]
+  end
+  
+  config.vm.define "master" do |machine|
+    machine.vm.hostname = "master"
+    machine.vm.network 'private_network', ip: "192.168.99.11"
+
+  end
+
+  config.vm.define "slave1" do |machine|
+    machine.vm.hostname = "slave1"
+    machine.vm.network 'private_network', ip: "192.168.99.21"
+  end
+
+  config.vm.define "slave2" do |machine|
+    machine.vm.hostname = "slave2"
+    machine.vm.network 'private_network', ip: "192.168.99.22"
+  end
+end

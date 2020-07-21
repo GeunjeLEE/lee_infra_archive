@@ -1,0 +1,22 @@
+---
+- name: Jenkins を起動する
+  hosts: docker
+  become: yes
+
+  tasks:
+    - name: (APT) 必要となるパッケージをインストールする
+      apt:
+        name: python-pip
+        update_cache: yes
+
+    - name: (PIP) 必要となるパッケージをインストールする
+      pip:
+        name: docker-py
+
+    - name: Jenkins コンテナを起動する
+      docker_container:
+        name: jenkins
+        image: jenkins
+        ports:
+          - "8080:8080"
+          - "50000:50000"

@@ -1,0 +1,31 @@
+---
+- name: "Let's Chat を起動する"
+  hosts: docker
+  become: yes
+
+  tasks:
+    - name: (APT) 必要となるパッケージをインストールする
+      apt:
+        name: python-pip
+        update_cache: yes
+
+    - name: (PIP) 必要となるパッケージをインストールする
+      pip:
+        name: docker-py
+
+    - name: MongoDB コンテナを起動する
+      docker_container:
+        name: mongo
+        image: "mongo:latest"
+        volumes:
+          - "/srv/docker/lets-chat:/data/db"
+
+    - name: "Let's Chat コンテナを起動する"
+      docker_container:
+        name: chat
+        image: "sdelements/lets-chat"
+        links:
+          - mongo
+        ports:
+          - "8080:8080"
+          - "5222:5222"
