@@ -1,20 +1,26 @@
+data "archive_file" "lambda_zip" {
+  type = "zip"
+  source_file = "./src/reduce_ecs_running_time.py"
+  output_path = "./src/lambda_function.zip"
+}
+
+resource "aws_lambda_function" "this" {
+  filename      = data.archive_file.lambda_zip.output_path
+  function_name = var.func_name
+  role          = aws_iam_role.this.arn
+  handler       = "reduce_ecs_running_time.lambda_handler"
+
+  source_code_hash = data.archive_file.lambda_zip.output_base64sha256
+
+  runtime = "python3.8"
+}
+
 resource "aws_lambda_permission" "this" {
   statement_id  = "AllowExecutionFromCloudWatch"
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.this.function_name
   principal     = "events.amazonaws.com"
   source_arn    = var.lambda_trigger_source_arn
-}
-
-resource "aws_lambda_function" "this" {
-  filename      = "lambda_function.zip"
-  function_name = var.func_name
-  role          = aws_iam_role.this.arn
-  handler       = "reduce_ecs_running_time.lambda_handler"
-
-  source_code_hash = filebase64sha256("lambda_function.zip")
-
-  runtime = "python3.8"
 }
 
 resource "aws_cloudwatch_log_group" "this" {

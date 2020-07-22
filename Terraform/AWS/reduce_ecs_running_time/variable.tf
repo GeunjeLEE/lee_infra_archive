@@ -1,5 +1,5 @@
 variable "func_name"{
-    default = "ecs_stop_or_stop_func"
+    default = "reduce_ecs_running_time"
 }
 
 variable "event_rule_name"{
