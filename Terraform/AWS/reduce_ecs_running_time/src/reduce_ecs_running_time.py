@@ -55,7 +55,7 @@ def put_autoscaling_policy(cluster_name,service_name):
                 'TAGS',
             ]
         )
-        TargetValue_from_tag = response['clusters'][0]['tags'][0]['value']
+        TargetValue_from_tag = int(float(response['clusters'][0]['tags'][0]['value']))
 
         # delete TargetValue tag from ecs service
         response = ecs_client.describe_services(
@@ -80,7 +80,7 @@ def put_autoscaling_policy(cluster_name,service_name):
             ScalableDimension='ecs:service:DesiredCount',
             PolicyType='TargetTrackingScaling',
             TargetTrackingScalingPolicyConfiguration={
-                'TargetValue': 10,
+                'TargetValue': TargetValue_from_tag,
                 'PredefinedMetricSpecification': {
                     'PredefinedMetricType': 'ECSServiceAverageCPUUtilization'
                 },
