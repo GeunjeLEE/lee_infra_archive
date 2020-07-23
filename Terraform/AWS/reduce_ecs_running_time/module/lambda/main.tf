@@ -13,6 +13,7 @@ resource "aws_lambda_function" "this" {
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
 
   runtime = "python3.8"
+  timeout = 10
 }
 
 resource "aws_lambda_permission" "this" {
@@ -55,28 +56,39 @@ resource "aws_iam_policy" "this" {
 
   policy = <<EOF
 {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-        "Effect": "Allow",
-        "Action": [
-            "ecs:DescribeServices",
-            "ecs:UpdateService"
-        ],
-        "Resource": [
-            "*"
-        ]
-    },
-    {
-      "Action": [
-        "logs:CreateLogGroup",
-        "logs:CreateLogStream",
-        "logs:PutLogEvents"
-      ],
-      "Resource": "arn:aws:logs:*:*:*",
-      "Effect": "Allow"
-    }
-  ]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "ecs:UpdateService",
+                "application-autoscaling:DescribeScalingPolicies",
+                "application-autoscaling:PutScalingPolicy",
+                "ecs:DescribeServices",
+                "application-autoscaling:DeleteScalingPolicy",
+                "ecs:TagResource",
+                "ecs:UntagResource",
+                "ecs:DescribeClusters"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "arn:aws:logs:*:*:*"
+        },
+        {
+            "Sid": "VisualEditor2",
+            "Effect": "Allow",
+            "Action": "logs:CreateLogGroup",
+            "Resource": "arn:aws:logs:*:*:*"
+        }
+    ]
 }
 EOF
 }
