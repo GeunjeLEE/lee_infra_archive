@@ -117,7 +117,7 @@ def lambda_handler(event, context):
         JST = timezone(timedelta(hours=+9), 'JST')
         current_hour = datetime.now(JST).hour
         ecs_list = [
-            ['lee-cluster','bg-web-service']
+            ['ECS_cluster_name','ECS_service_name']
         ]
 
         # 07:00~17:59 = running

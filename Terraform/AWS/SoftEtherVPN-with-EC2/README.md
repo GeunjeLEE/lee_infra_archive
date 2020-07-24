@@ -8,8 +8,7 @@ https://www.softether.org/4-docs/1-manual/7._Installing_SoftEther_VPN_Server/7.3
   - subnet
   - internet gateway
   - route table
-- SoftEther VPN server with ec2 instance (t2.micro)
-  - iam instance profile(AmazonSSMManagedInstanceCore)
+- SoftEther VPN Server with ec2 instance (t2.micro)
 
 ## 구축 & 사용 방법
 1. terraform으로 필요한 리소스 배포
