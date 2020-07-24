@@ -18,14 +18,20 @@ $ terraform plan
 $ terraform apply
 ```
 
-### Server 설정
-#### 생성된 EC2 instance에 접속하여 VPN Server 설정
+## Server 설정
+### 생성된 EC2 instance에 접속하여 VPN Server 설정
 
 1. 서버에 ssh 접속 후, VPN Server 설정을 위해 vpncmd 실행
 - vpncmd 실행 후, `1. Management of VPN Server or VPN Bridge`를 선택하여 초기 VPN Server 및 VPN Bridge설정 진행
 ```
 [root@foobar ~]# vpncmd
-vpncmd command - SoftEther VPN Command Line Management UtilitySoftEther VPN Command Line Management Utility (vpncmd command)Version 4.32 Build 9731   (English)Compiled 2020/01/01 17:54:10 by buildsan at crosswinCopyright (c) SoftEther VPN Project. All Rights Reserved.By using vpncmd program, the following can be achieved.
+vpncmd command - SoftEther VPN Command Line Management Utility
+SoftEther VPN Command Line Management Utility (vpncmd command)
+Version 4.32 Build 9731 (English)
+Compiled 2020/01/01 17:54:10 by buildsan at crosswin
+Copyright (c) SoftEther VPN Project. All Rights Reserved.
+
+By using vpncmd program, the following can be achieved.
 
 1. Management of VPN Server or VPN Bridge
 2. Management of VPN Client
@@ -124,24 +130,24 @@ The command completed successfully.
 VPN Server/foobarhub>exit
 ```
 
-### Client 설정
+## Client 설정
 
-#### Mac
+### Mac
 ```
 coming soon
 ```
 
-#### Window
+### Window
 ```
 coming soon
 ```
 
-#### Android
+### Android
 ```
 coming soon
 ```
 
-#### ios
+### ios
 ```
 coming soon
 ```
