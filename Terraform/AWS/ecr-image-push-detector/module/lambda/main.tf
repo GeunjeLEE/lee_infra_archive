@@ -1,18 +1,16 @@
-resource "aws_lambda_permission" "allow_cloudwatch" {
-  statement_id  = "AllowExecutionFromCloudWatch"
-  action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.this.function_name
-  principal     = "events.amazonaws.com"
-  source_arn    = var.source_arn
+data "archive_file" "lambda_zip" {
+  type = "zip"
+  source_file = "./src/image_scan.py"
+  output_path = "./src/lambda_function.zip"
 }
 
 resource "aws_lambda_function" "this" {
-  filename      = "lambda_function.zip"
+  filename      = data.archive_file.lambda_zip.output_path
   function_name = var.func_name
   role          = aws_iam_role.this.arn
   handler       = "image_scan.lambda_handler"
 
-  source_code_hash = filebase64sha256("lambda_function.zip")
+  source_code_hash = data.archive_file.lambda_zip.output_base64sha256
 
   runtime = "python3.7"
 
@@ -21,6 +19,14 @@ resource "aws_lambda_function" "this" {
       HookUrl = var.slack_hook_url
     }
   }
+}
+
+resource "aws_lambda_permission" "allow_cloudwatch" {
+  statement_id  = "AllowExecutionFromCloudWatch"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.this.function_name
+  principal     = "events.amazonaws.com"
+  source_arn    = var.source_arn
 }
 
 resource "aws_cloudwatch_log_group" "this" {
