@@ -26,9 +26,8 @@ $ terraform apply
 
 ### 흐름
 
-```
-UML
-```
+![reduce_ecs](https://user-images.githubusercontent.com/19552819/88399556-035e7580-ce02-11ea-8fde-944173abfe54.JPG)
+
 - (※1)
     - ECS cluster의 tag에서 AutoScaling target value를 가져옴
     - AutoScaling target value의 값을 참고하여 대상 ECS Service에 AutoScaling Policy를 생성
