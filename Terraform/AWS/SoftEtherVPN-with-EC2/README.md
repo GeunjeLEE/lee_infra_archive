@@ -109,7 +109,7 @@ SecureNatEnable command - Enable the Virtual NAT and DHCP Server Function (Secur
 The command completed successfully.
 ```
 
-8. Virtual Hub 설정 : Dhcp 활성화
+9. Virtual Hub 설정 : Dhcp 활성화
 ```
 VPN Server/foobar>hubDhcpset /Start:192.168.30.10 /End:192.168.30.200 /Mask:255.255.255.0 /Expire:7200 /GW:192.168.30.1 /DNS:192.168.30.1 /DNS2:none /Domain:none /Log:yes /PushRoute:"10.0.0.0/255.255.0.0/192.168.30.1"
 DhcpSet command - Change Virtual DHCP Server Function Setting of SecureNAT Function
@@ -133,21 +133,47 @@ VPN Server/foobarhub>exit
 ## Client 설정
 
 ### Mac
-```
-coming soon
-```
+1. 네트워크 설정에서 새로운 인터페이스 설정 추가
+
+<img width="600" alt="7" src="https://user-images.githubusercontent.com/19552819/88480995-29b41a80-cf94-11ea-8d0f-2b17754911d0.png">
+
+2. 인터페이스 설정
+
+- 인터페이스 : VPN
+- 유형 : `IPSec을 통한 L2TP`
+- 서비스 이름 : 원하는 이름
+
+<img width="600" alt="7" src="https://user-images.githubusercontent.com/19552819/88480996-2ae54780-cf94-11ea-94f9-ad466677da1b.png">
+
+3. VPN 접근을 위한 계정 이름 입력
+
+- 서버주소 : SoftEther VPN이 가동 중인 서버의 ip주소
+- 계정이름 : `VPN에 접근하기 위한 유저 생성` 에서 생성한 유저
+
+<img width="600" alt="7" src="https://user-images.githubusercontent.com/19552819/88480997-2b7dde00-cf94-11ea-8e1d-2eabf30cc324.png">
+
+4. 그 후 인증 설정으로 이동
+
+<img width="600" alt="7" src="https://user-images.githubusercontent.com/19552819/88480998-2c167480-cf94-11ea-9421-2be3fa6a8fa8.png">
+
+5. 인증 비밀번호 입력
+
+- 사용자 인증 암호 : `VPN에 접근하기 위한 유저 생성` 에서 생성한 유저의 비밀번호
+- 시스템인증 : `7. Virtual Hub 설정 : IPsec 활성화` 에서 입력한 Pre Shared Key
+
+<img width="600" alt="7" src="https://user-images.githubusercontent.com/19552819/88480999-2c167480-cf94-11ea-8d0f-b4416f0f0ecb.png">
+
+6. 그 후 고급 설정으로 이동
+
+<img width="600" alt="7" src="https://user-images.githubusercontent.com/19552819/88481000-2caf0b00-cf94-11ea-9239-f5c4899e7e6e.png">
+
+7. 세션 옵션 설정
+
+- `VPN 연결을 통해 모든 트레픽 전송`을 체크
+
+<img width="600" alt="7" src="https://user-images.githubusercontent.com/19552819/88481001-2caf0b00-cf94-11ea-8ddc-0b3fca71f592.png">
 
 ### Window
-```
-coming soon
-```
-
-### Android
-```
-coming soon
-```
-
-### ios
 ```
 coming soon
 ```
