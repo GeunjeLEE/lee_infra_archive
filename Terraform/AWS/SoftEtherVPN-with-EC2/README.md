@@ -174,9 +174,21 @@ VPN Server/foobarhub>exit
 <img width="600" alt="7" src="https://user-images.githubusercontent.com/19552819/88481001-2caf0b00-cf94-11ea-8ddc-0b3fca71f592.png">
 
 ### Window
-```
-coming soon
-```
+1 `VPN 설정`에서 VPN 연결 추가를 클릭
+
+<img width="1200" alt="7" src="https://user-images.githubusercontent.com/19552819/88481590-5158b200-cf97-11ea-93a6-1ea8095ff37e.JPG">
+
+2. VPN 설정
+
+- 연결 이름 : 자유
+- 서버 이름 또는 주소 : SoftEther VPN이 가동 중인 서버의 ip주소
+- VPN종류 : `L2TP/IPsec 및 미리 공유한 키`
+- 미리 공유한 키 : `7. Virtual Hub 설정 : IPsec 활성화` 에서 입력한 Pre Shared Key
+- 로그인 정보 입력 : `사용자 이름 및 암호`
+- 사용자 이름 : `VPN에 접근하기 위한 유저 생성` 에서 생성한 유저
+- 암호 : `VPN에 접근하기 위한 유저 생성` 에서 생성한 유저의 비밀번호
+
+<img width="600" alt="7" src="https://user-images.githubusercontent.com/19552819/88481591-5289df00-cf97-11ea-81be-9612f5f58daa.JPG">
 
 ## 참고
 - 생성되는 EC2 instance는 ssm을 이용한 접근만을 허용한다.
