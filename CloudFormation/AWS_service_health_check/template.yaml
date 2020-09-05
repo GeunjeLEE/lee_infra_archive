@@ -1,0 +1,76 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  ProjectName:
+    Type: String
+    Default: "amazon-service-health-check"
+  SlackWorkspaceId:
+    Type: String
+  SlackChannelId:
+    Type: String
+
+Description: "amazon-service-health-check-stack"
+
+Resources:
+  SNStopic:
+    Type: AWS::SNS::Topic
+    Properties: 
+      TopicName: !Sub "${ProjectName}-topic"
+
+  CloudwatchEventRule:
+    Type: AWS::Events::Rule
+    Properties: 
+      Description: "Cloud watch event rule for aws service health check"
+      Name: !Sub "${ProjectName}-rule"
+      EventPattern: 
+        source:
+          - aws.health
+      State: ENABLED
+      Targets: 
+      - Arn: !Ref SNStopic
+        Id: !Sub "${ProjectName}-targetTopic"
+
+  IAMRoleForChatBot:
+    Type: AWS::IAM::Role
+    Properties: 
+      RoleName: !Sub "${ProjectName}-role"
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - cloudwatch.amazonaws.com
+            Action: 'sts:AssumeRole'
+      Policies: 
+        - PolicyName: !Sub "${ProjectName}-policy"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "cloudwatch:Describe*"
+                  - "cloudwatch:Get*"
+                  - "cloudwatch:List*"
+                Resource: "*"
+
+  Chatbot:
+    Type: AWS::Chatbot::SlackChannelConfiguration
+    Properties: 
+      ConfigurationName: !Sub "${ProjectName}-configuration"
+      IamRoleArn: !GetAtt IAMRoleForChatBot.Arn
+      LoggingLevel: INFO
+      SlackWorkspaceId: !Sub ${SlackWorkspaceId}
+      SlackChannelId: !Sub ${SlackChannelId}
+      SnsTopicArns: 
+        - !Ref SNStopic
+
+Outputs:
+  SNStopic: 
+    Value: !Ref SNStopic
+  CloudwatchEventRule: 
+    Value: !Ref CloudwatchEventRule
+  IAMRoleForChatBot: 
+    Value: !Ref IAMRoleForChatBot
+  Chatbot: 
+    Value: !Ref Chatbot
