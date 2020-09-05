@@ -5,9 +5,9 @@
   "source": "aws.ecr",
   "account": "123456789123",
   "time": "2020-05-13T02:56:30Z",
-  "region": "ap-northeast-1",
+  "region": "ap-northeast-2",
   "resources": [
-    "arn:aws:ecr:ap-northeast-1:123456789123:repository/lee-test"
+    "arn:aws:ecr:ap-northeast-2:123456789123:repository/lee-test"
   ],
   "detail": {
     "scan-status": "COMPLETE",
