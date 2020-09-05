@@ -1,5 +1,5 @@
 ## 개요
-- [AWS Personal Health Dashboard](https://aws.amazon.com/ko/premiumsupport/technology/personal-health-dashboard/)를 이용해서 자신의 AWS 리소스에 영향을 끼칠 수 있는 이벤트 알림을 Slack으로 전송
+- [AWS Personal Health Dashboard](https://aws.amazon.com/ko/premiumsupport/technology/personal-health-dashboard/)를 이용해서 자신의 AWS 리소스에 영향을 끼칠 수 있는 이벤트 알림(AWS 장애 등)을 Slack으로 전송
 - AWS Personal Health Dashboard는 개인화 된 정보를 제공하기 때문에 특정 AWS 계정에 관한 정보만을 알린다.
     - AWS Region 장애 및 특정 계정 리소스의 업데이트 권고 이벤트 등이 전송됨
 
