@@ -2,12 +2,14 @@
 ECR 레포지토리에 이미지를 업로드 할 때 발생하는 이미지 취약성 스캔 이벤트를<br>
 Cloudwatch로부터 감지하여 완료 된 스캔 결과를 Slack에 통지.
 
+### terraform version
+- `>=0.12`
+
 ### 생성되는 리소스
 - cloudwatch event rule
 - lambda
 
 ### 생성
-
 1. terraform으로 AWS 리소스 배포
 ```
 $ terraform init

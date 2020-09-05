@@ -1,7 +1,8 @@
 ## 개요
 AWS EC2에 VPN SotfWare([SoftEther VPN](https://www.softether.org/))를 설치하여 VPN 서버를 구축하고 이를 통해 VPN 접속을 가능하게 한다.
 
-https://www.softether.org/4-docs/1-manual/7._Installing_SoftEther_VPN_Server/7.3_Install_on_Linux_and_Initial_Configurations
+### terraform version
+- `>=0.12`
 
 ### 생성되는 리소스
 - vpc
@@ -196,4 +197,4 @@ VPN Server/foobarhub>exit
   - 접근 시, AWS 콘솔에서 ssm을 이용하여 접근한다.
 - 생성되는 EC2 instance는 Amazon Linux 2를 이용한다.
   - ssm agent가 default로 설치된다.
-
+- https://www.softether.org/4-docs/1-manual/7._Installing_SoftEther_VPN_Server/7.3_Install_on_Linux_and_Initial_Configurations

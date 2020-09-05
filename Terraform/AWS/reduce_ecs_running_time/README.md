@@ -2,6 +2,9 @@
 개발/테스트 환경에서 ECS의 불필요한 가동 시간을 줄이기 위해<br>
 Lambda를 이용하여 업무 시간 이외의 시간대에는 ECS의 Task를 종료시킴
 
+### terraform version
+- `>=0.12`
+
 ### 생성되는 리소스
 - cloudwatch event rule
 - lambda
