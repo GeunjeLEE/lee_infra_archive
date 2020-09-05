@@ -9,9 +9,8 @@
 - AWS SNS
 - AWS chatbot
 
-```
-시스템 구조 사진
-```
+<img width="1153" alt="KakaoTalk_20200905_112119702" src="https://user-images.githubusercontent.com/19552819/92296229-5123dd00-ef6d-11ea-80a8-44f2dbd34132.png">
+
 ### 생성
 
 1. AWS Console에서CloudFormation으로 이동하여、Stack을 생성
