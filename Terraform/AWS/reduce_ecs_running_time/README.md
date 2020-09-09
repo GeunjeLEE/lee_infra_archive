@@ -48,4 +48,6 @@ $ terraform apply
 
 ### TODO
 - ECS Service가 다수 존재할 때에도 문제없이 실행될 수 있도록 수정
-- AutoScaling Policy가 다수 존재할 때에도 문제없이 실행될 수 있도록 수정
+- AutoScaling Policy 유무에 상관없이 적용 되도록 수정
+    - AutoScaling Policy가 다수 존재할 때에도 문제없이 실행될 수 있도록 수정
+    - AutoScaling Policy가 없는 경우는 무시하고 실행될 수 있도록 수정
