@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  phpmyadmin:
+    build:
+        context: .
+    container_name: myadmin
+    ports:
+        - "8080:80"
+    environment:
+      - provider_rds_endpoint=127.0.0.1
+      - engagement_rds_endpoint=127.0.0.1
