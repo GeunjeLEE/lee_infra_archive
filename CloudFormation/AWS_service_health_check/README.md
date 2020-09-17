@@ -9,14 +9,15 @@
 - AWS SNS
 - AWS chatbot
 
-<img width="1153" alt="KakaoTalk_20200905_112119702" src="https://user-images.githubusercontent.com/19552819/92296229-5123dd00-ef6d-11ea-80a8-44f2dbd34132.png">
-
 ### 생성
 
 1. AWS Console에서CloudFormation으로 이동하여、Stack을 생성
 2. 스택 생성 화면에서 [템플릿 파일을 업로드]로 template.yaml을 업로드
 3. 다음으로 이동하여、[파라미터]에서 `SlackChannelId`와 `SlackWorkspaceId`를 입력
 4. 나머지는 Default인 상태로 작성.
+
+## 흐름
+<img width="1358" alt="KakaoTalk_20200910_220939092" src="https://user-images.githubusercontent.com/19552819/92733205-61dfb300-f3b2-11ea-9e57-5cc4378490b0.png">
 
 ### 참고
 - AWS Chatbot에서 Slack 채팅 클라이언트가 연동되어있는지 확인할 것.
