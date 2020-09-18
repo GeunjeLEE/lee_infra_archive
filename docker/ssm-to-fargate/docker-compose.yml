@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  ssm-to-fargate:
+    build:
+        context: .
+    container_name: ssm-to-fargate
+    environment:
+      - SSM_AGENT_CODE='foobar'
+      - SSM_AGENT_ID='foobar'
+      - AWS_DEFAULT_REGION='foobar'
