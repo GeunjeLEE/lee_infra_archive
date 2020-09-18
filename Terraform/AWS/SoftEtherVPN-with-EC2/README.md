@@ -1,5 +1,5 @@
 ## 개요
-AWS EC2에 VPN SotfWare([SoftEther VPN](https://www.softether.org/))를 설치하여 VPN 서버를 구축하고 이를 통해 VPN 접속을 가능하게 한다.
+AWS ec2에 VPN SotfWare([SoftEther VPN](https://www.softether.org/))를 설치하여 VPN 서버를 구축하고 이를 통해 VPN 접속을 가능하게 한다.
 
 ### terraform version
 - `>=0.12`
@@ -23,9 +23,9 @@ $ terraform apply
 ```
 
 ## Server 설정
-### 생성된 EC2 instance에 접속하여 VPN Server 설정
+### 생성된 ec2 instance에 접속하여 VPN Server 설정
 
-1. 서버에 ssh 접속 후, VPN Server 설정을 위해 vpncmd 실행
+1. ec2 서버에 접속 후, VPN Server 설정을 위해 vpncmd 실행
 - vpncmd 실행 후, `1. Management of VPN Server or VPN Bridge`를 선택하여 초기 VPN Server 및 VPN Bridge설정 진행
 ```
 [root@foobar ~]# vpncmd
