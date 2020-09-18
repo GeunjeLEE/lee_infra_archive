@@ -11,6 +11,8 @@ AWS EC2에 VPN SotfWare([SoftEther VPN](https://www.softether.org/))를 설치�
   - route table
   - security groups
 - SoftEther VPN Server with ec2 instance (t2.micro)
+  - ssm manager를 이용하고 있기 때문에, ssh 접속이 아닌 ssm으로 접속
+    - aws 콘솔에서 해당 ec2를 선택 후, 연결 -> session manager를 선택해서 접속.
 
 ## 구축
 ### terraform으로 리소스 배포
