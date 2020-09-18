@@ -9,6 +9,7 @@ AWS EC2에 VPN SotfWare([SoftEther VPN](https://www.softether.org/))를 설치�
   - subnet
   - internet gateway
   - route table
+  - security groups
 - SoftEther VPN Server with ec2 instance (t2.micro)
 
 ## 구축
