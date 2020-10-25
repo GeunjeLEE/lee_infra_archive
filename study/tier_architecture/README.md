@@ -2,7 +2,7 @@
 # 구성
 ## 환경 관리
 - infra
-  - vagrant X virtualbox
+  - vagrant X virtualbox X CentOS 7 Image
 - config
   - saltsatck(예정)
 ## 구성도
