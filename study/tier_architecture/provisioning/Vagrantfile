@@ -1,0 +1,59 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.box = "centos/7"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.customize ["modifyvm", :id, "--memory", "1024"]
+  end
+
+  config.vm.provision :shell, :inline => "sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config; sudo systemctl restart sshd;", run: "always"
+
+  config.vm.define "bastion" do |machine|
+    machine.vm.hostname = "bastion"
+    machine.vm.network 'private_network', ip: "192.168.56.10"
+  end
+
+  # ========================================================= LB
+  
+  config.vm.define "haproxy" do |machine|
+    machine.vm.hostname = "haproxy"
+    machine.vm.network 'private_network', ip: "192.168.56.11"
+  end
+
+  # ========================================================= presentation
+
+  config.vm.define "web1" do |machine|
+    machine.vm.hostname = "web1"
+    machine.vm.network 'private_network', ip: "192.168.56.12"
+  end
+
+  config.vm.define "web2" do |machine|
+    machine.vm.hostname = "web2"
+    machine.vm.network 'private_network', ip: "192.168.56.13"
+  end
+
+  # ========================================================= business
+
+  config.vm.define "was1" do |machine|
+    machine.vm.hostname = "was1"
+    machine.vm.network 'private_network', ip: "192.168.56.14"
+  end
+
+  config.vm.define "was2" do |machine|
+    machine.vm.hostname = "was2"
+    machine.vm.network 'private_network', ip: "192.168.56.15"
+  end
+
+  # ========================================================= data
+
+  config.vm.define "db" do |machine|
+    machine.vm.hostname = "db"
+    machine.vm.network 'private_network', ip: "192.168.56.16"
+  end
+
+end
