@@ -1,8 +1,37 @@
 
 # 구성
 ## 구성도
+<img width="487" alt="KakaoTalk_20201026_004929407" src="https://user-images.githubusercontent.com/19552819/97111993-3841d780-1725-11eb-8bb5-9e617c29aee3.png">
+
+### L4/L7 Switch
+- HAProxy
+- 80 port
+
+### Presentation Tire
+- Nginx * 2
+- 8080 port
+
+### Logic Tire
+- Node.js * 2
+- 3000 port
+
+### Data Tire
+- Mysql * 1
+- 3306 port
 
 ## TODO
+- 인프라 구성관리 도구를 이용해 패키지 및 설정 관리 해보기
+  - saltstack을 이용해 필요한 package를 설치하고, 설정 파일을 관리한다
+    - 이것으로 application 레벨에서의 재해복구가 가능한 것 일까?
+    - 설정을 코드(?)로 관리하는 것으로, 패키지 버전을 모두 동일하게 유지할 수 있다
+    - 인프라 구성관리 도구를 이용하면, 새로운 서버를 구축하더라도 빠르게 패키지&설정을 배포하여 서비스 투입 가능
+      - 설정 관리 파일을 github로 관리하는 것으로, 인프라 형상 버전 관리도 가능(새로운 기능 배포 & Rollback이 빠르다)
+- vrrp를 이용한 switch 이중화해보기
+  - HAProxy & keepalived?
+  - HAProxy 기본 vrrp 기능?
+- DB replication 구성해보기
+  - application에서 read 요청이 발생할 경우, read-only(slave)로 요청 보내도록 구성
+    - application에서 설정이 필요?
 
 # 기본 설치
 
