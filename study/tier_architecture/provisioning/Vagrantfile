@@ -18,14 +18,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     machine.vm.network 'private_network', ip: "192.168.56.10"
   end
 
-  # ========================================================= LB
+  # ========================================================= Switch
   
   config.vm.define "haproxy" do |machine|
     machine.vm.hostname = "haproxy"
     machine.vm.network 'private_network', ip: "192.168.56.11"
   end
 
-  # ========================================================= presentation
+  # ========================================================= Presentation
 
   config.vm.define "web1" do |machine|
     machine.vm.hostname = "web1"
@@ -37,7 +37,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     machine.vm.network 'private_network', ip: "192.168.56.13"
   end
 
-  # ========================================================= business
+  # ========================================================= Logic
 
   config.vm.define "was1" do |machine|
     machine.vm.hostname = "was1"
@@ -49,7 +49,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     machine.vm.network 'private_network', ip: "192.168.56.15"
   end
 
-  # ========================================================= data
+  # ========================================================= Data
 
   config.vm.define "db" do |machine|
     machine.vm.hostname = "db"
