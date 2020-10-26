@@ -13,47 +13,72 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision :shell, :inline => "sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config; sudo systemctl restart sshd;", run: "always"
 
-  config.vm.define "bastion" do |machine|
-    machine.vm.hostname = "bastion"
-    machine.vm.network 'private_network', ip: "192.168.56.10"
+  # ========================================================= Management
+
+  config.vm.define "bastion" do |bastion|
+    bastion.vm.hostname = "bastion"
+    bastion.vm.network 'private_network', ip: "192.168.56.10"
+
+    bastion.vm.provision "shell", 
+      path: "scripts/install-salt-master.sh"
   end
 
   # ========================================================= LB
   
-  config.vm.define "haproxy" do |machine|
-    machine.vm.hostname = "haproxy"
-    machine.vm.network 'private_network', ip: "192.168.56.11"
+  config.vm.define "haproxy" do |haproxy|
+    haproxy.vm.hostname = "haproxy"
+    haproxy.vm.network 'private_network', ip: "192.168.56.11"
+
+    haproxy.vm.provision "shell",
+      path: "scripts/install-salt-minion.sh", 
+      args: ["192.168.56.10", "haproxy"]
   end
 
   # ========================================================= presentation
 
-  config.vm.define "web1" do |machine|
-    machine.vm.hostname = "web1"
-    machine.vm.network 'private_network', ip: "192.168.56.12"
+  config.vm.define "web1" do |web|
+    web.vm.hostname = "web1"
+    web.vm.network 'private_network', ip: "192.168.56.12"
+    
+    web.vm.provision "shell",
+      path: "scripts/install-salt-minion.sh", 
+      args: ["192.168.56.10", "web"]
   end
 
-  config.vm.define "web2" do |machine|
-    machine.vm.hostname = "web2"
-    machine.vm.network 'private_network', ip: "192.168.56.13"
+  config.vm.define "web2" do |web|
+    web.vm.hostname = "web2"
+    web.vm.network 'private_network', ip: "192.168.56.13"
+
+    web.vm.provision "shell",
+      path: "scripts/install-salt-minion.sh", 
+      args: ["192.168.56.10", "web"]
   end
 
   # ========================================================= business
 
-  config.vm.define "was1" do |machine|
-    machine.vm.hostname = "was1"
-    machine.vm.network 'private_network', ip: "192.168.56.14"
+  config.vm.define "was1" do |was|
+    was.vm.hostname = "was1"
+    was.vm.network 'private_network', ip: "192.168.56.14"
+
+    was.vm.provision "shell",
+      path: "scripts/install-salt-minion.sh", 
+      args: ["192.168.56.10", "was"]
   end
 
-  config.vm.define "was2" do |machine|
-    machine.vm.hostname = "was2"
-    machine.vm.network 'private_network', ip: "192.168.56.15"
+  config.vm.define "was2" do |was|
+    was.vm.hostname = "was2"
+    was.vm.network 'private_network', ip: "192.168.56.15"
+
+    was.vm.provision "shell",
+      path: "scripts/install-salt-minion.sh", 
+      args: ["192.168.56.10", "was"]
   end
 
   # ========================================================= data
 
-  config.vm.define "db" do |machine|
-    machine.vm.hostname = "db"
-    machine.vm.network 'private_network', ip: "192.168.56.16"
+  config.vm.define "db" do |db|
+    db.vm.hostname = "db"
+    db.vm.network 'private_network', ip: "192.168.56.16"
   end
 
 end
