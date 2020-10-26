@@ -1,5 +1,10 @@
 
 # 구성
+## 환경 관리
+- infra
+  - vagrant X virtualbox X CentOS 7 Image
+- config
+  - saltsatck(예정)
 ## 구성도
 <img width="487" alt="KakaoTalk_20201026_004929407" src="https://user-images.githubusercontent.com/19552819/97111993-3841d780-1725-11eb-8bb5-9e617c29aee3.png">
 
@@ -23,6 +28,7 @@
 - 인프라 구성관리 도구를 이용해 패키지 및 설정 관리 해보기
   - saltstack을 이용해 필요한 package를 설치하고, 설정 파일을 관리한다
     - 이것으로 application 레벨에서의 재해복구가 가능한 것 일까?
+      - 인프라 형상은 vagrant로 관리하고 있다.
     - 설정을 코드(?)로 관리하는 것으로, 패키지 버전을 모두 동일하게 유지할 수 있다
     - 인프라 구성관리 도구를 이용하면, 새로운 서버를 구축하더라도 빠르게 패키지&설정을 배포하여 서비스 투입 가능
       - 설정 관리 파일을 github로 관리하는 것으로, 인프라 형상 버전 관리도 가능(새로운 기능 배포 & Rollback이 빠르다)

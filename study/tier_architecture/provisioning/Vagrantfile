@@ -23,7 +23,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       path: "scripts/install-salt-master.sh"
   end
 
-  # ========================================================= LB
+  # ========================================================= Switch
   
   config.vm.define "haproxy" do |haproxy|
     haproxy.vm.hostname = "haproxy"
@@ -34,7 +34,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       args: ["192.168.56.10", "haproxy"]
   end
 
-  # ========================================================= presentation
+  # ========================================================= Presentation
 
   config.vm.define "web1" do |web|
     web.vm.hostname = "web1"
@@ -54,7 +54,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       args: ["192.168.56.10", "web"]
   end
 
-  # ========================================================= business
+  # ========================================================= Logic
 
   config.vm.define "was1" do |was|
     was.vm.hostname = "was1"
@@ -74,7 +74,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       args: ["192.168.56.10", "was"]
   end
 
-  # ========================================================= data
+  # ========================================================= Data
 
   config.vm.define "db" do |db|
     db.vm.hostname = "db"
