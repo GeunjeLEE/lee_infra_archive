@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo rpm --import https://repo.saltstack.com/py3/redhat/8/x86_64/archive/2019.2.5/SALTSTACK-GPG-KEY.pub -y
+sudo rpm --import https://repo.saltstack.com/py3/redhat/8/x86_64/archive/2019.2.5/SALTSTACK-GPG-KEY.pub
 
 sudo touch /etc/yum.repos.d/saltstack.repo
 sudo cat << 'EOF' >> /etc/yum.repos.d/saltstack.repo
