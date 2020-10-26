@@ -15,11 +15,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # ========================================================= Management
 
-  config.vm.define "bastion" do |bastion|
-    bastion.vm.hostname = "bastion"
-    bastion.vm.network 'private_network', ip: "192.168.56.10"
+  config.vm.define "mgmt" do |mgmt|
+    mgmt.vm.hostname = "mgmt"
+    mgmt.vm.network 'private_network', ip: "192.168.56.10"
 
-    bastion.vm.provision "shell", 
+    mgmt.vm.provision "shell", 
       path: "scripts/install-salt-master.sh"
   end
 
@@ -79,6 +79,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "db" do |db|
     db.vm.hostname = "db"
     db.vm.network 'private_network', ip: "192.168.56.16"
+
+    db.vm.provision "shell",
+      path: "scripts/install-salt-minion.sh", 
+      args: ["192.168.56.10", "db"]
   end
 
 end
