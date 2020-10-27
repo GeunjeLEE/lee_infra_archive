@@ -24,5 +24,6 @@ frontend http_front
 
 backend http_backend
      balance roundrobin
-     server my_server 192.168.56.12:8080 check
-     server my_server 192.168.56.13:8080 check
+     {% for backend in backends %}
+     server was1 {{ backend['ip'] }}}:8080 check
+     {% endfor %}

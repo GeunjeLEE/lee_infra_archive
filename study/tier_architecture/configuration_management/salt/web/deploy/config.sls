@@ -5,3 +5,5 @@
         - group: root
         - mode: 644
         - template: jinja
+        - context:
+            backend_ip: {{ pillar['proxy_pass']grains['host'] }}

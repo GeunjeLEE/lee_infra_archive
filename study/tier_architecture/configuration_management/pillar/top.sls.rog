@@ -1,7 +1,0 @@
-base:
-  'roles:web'
-    - match: grain
-    - web
-  'roles:was'
-    - match: grain
-    - was
