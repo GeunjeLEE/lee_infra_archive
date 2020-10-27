@@ -17,13 +17,13 @@
 - Mysql * 1
 
 ## 활용 도구
-- 서버 템플릿 도구
+- [서버 템플릿 도구](https://github.com/LeekeunJe/lee_infra_archive/tree/master/study/tier_architecture/provisioning)
   - vagrant 2.2.10
   - virtualbox 6.1
   - CentOS 7 Image
     - CentOS Linux release 7.8.2003 (Core)
     - 3.10.0-1127.el7.x86_64
-- 구성 관리 도구
+- [구성 관리 도구](https://github.com/LeekeunJe/lee_infra_archive/tree/master/study/tier_architecture/configuration_management)
   - saltsatck 2019.2.5
 
 
