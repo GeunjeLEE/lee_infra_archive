@@ -8,7 +8,7 @@
 
 pkg_install:
     pkg.installed:
-        -names:
+        - names:
             - nginx
         - require:
             - file: /etc/yum.repos.d/nginx.repo
