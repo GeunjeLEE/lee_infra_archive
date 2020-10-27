@@ -11,15 +11,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--memory", "1024"]
   end
 
-  config.vm.provision :shell, :inline => "sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config; sudo systemctl restart sshd;", run: "always"
+  config.vm.provision "shell", 
+    path: "scripts/initial-setup.sh"
 
   # ========================================================= Management
 
-  config.vm.define "bastion" do |bastion|
-    bastion.vm.hostname = "bastion"
-    bastion.vm.network 'private_network', ip: "192.168.56.10"
+  config.vm.define "mgmt" do |mgmt|
+    mgmt.vm.hostname = "mgmt"
+    mgmt.vm.network 'private_network', ip: "192.168.56.10"
 
-    bastion.vm.provision "shell", 
+    mgmt.vm.provision "shell", 
       path: "scripts/install-salt-master.sh"
   end
 
@@ -27,6 +28,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   config.vm.define "haproxy" do |haproxy|
     haproxy.vm.hostname = "haproxy"
+    haproxy.vm.network "public_network"
     haproxy.vm.network 'private_network', ip: "192.168.56.11"
 
     haproxy.vm.provision "shell",
@@ -79,6 +81,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "db" do |db|
     db.vm.hostname = "db"
     db.vm.network 'private_network', ip: "192.168.56.16"
+
+    db.vm.provision "shell",
+      path: "scripts/install-salt-minion.sh", 
+      args: ["192.168.56.10", "db"]
   end
 
 end
