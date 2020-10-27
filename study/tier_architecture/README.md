@@ -2,7 +2,7 @@
 # 구성
 
 ## 구성도(3 tier architecture)
-<img width="487" alt="KakaoTalk_20201026_004929407" src="https://user-images.githubusercontent.com/19552819/97111993-3841d780-1725-11eb-8bb5-9e617c29aee3.png">
+<img width="1168" alt="KakaoTalk_20201028_000400107_01" src="https://user-images.githubusercontent.com/19552819/97320501-36a51a80-18b1-11eb-8a5c-86e53ddffc5c.png">
 
 ### L4/L7 Switch
 - HAProxy
