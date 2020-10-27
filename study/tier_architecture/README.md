@@ -2,9 +2,13 @@
 # 구성
 ## 환경 관리
 - infra
-  - vagrant X virtualbox X CentOS 7 Image
+  - vagrant 2.2.10
+  - virtualbox 6.1
+  - CentOS 7 Image
+    - CentOS Linux release 7.8.2003 (Core)
+    - 3.10.0-1127.el7.x86_64
 - config
-  - saltsatck(예정)
+  - saltsatck 2019.2.5
 ## 구성도
 <img width="487" alt="KakaoTalk_20201026_004929407" src="https://user-images.githubusercontent.com/19552819/97111993-3841d780-1725-11eb-8bb5-9e617c29aee3.png">
 
@@ -25,8 +29,8 @@
 - 3306 port
 
 ## TODO
-- 인프라 구성관리 도구를 이용해 패키지 및 설정 관리 해보기
-  - saltstack을 이용해 필요한 package를 설치하고, 설정 파일을 관리한다
+- ~~인프라 구성관리 도구를 이용해 패키지 및 설정 관리 해보기~~
+  - ~~saltstack을 이용해 필요한 package를 설치하고, 설정 파일을 관리한다~~
     - 이것으로 application 레벨에서의 재해복구가 가능한 것 일까?
       - 인프라 형상은 vagrant로 관리하고 있다.
     - 설정을 코드(?)로 관리하는 것으로, 패키지 버전을 모두 동일하게 유지할 수 있다
