@@ -1,9 +1,3 @@
-pkg_install:
-    pkg.installed:
-      - names:
-        - git
-        - nodejs
-
 get_nodejs_webapp_src:
     git.latest:
         - name: https://github.com/LeekeunJe/lee_sample_node_app.git
@@ -11,7 +5,6 @@ get_nodejs_webapp_src:
         - branch: master
         - require: 
             - pkg: pkg_install
-
 
 npm_install:
     npm.installed:
