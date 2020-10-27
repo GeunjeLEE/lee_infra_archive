@@ -7,3 +7,7 @@
         - template: jinja
         - context:
             backend_ip: {{ pillar['proxy_pass']grains['host'] }}
+
+nginx:
+    service.running:
+        - enable: True

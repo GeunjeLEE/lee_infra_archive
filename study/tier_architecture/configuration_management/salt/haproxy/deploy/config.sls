@@ -7,3 +7,7 @@
         - template: jinja
         - context:
             backends: {{ pillar['web_servers'] }}
+
+haproxy:
+    service.running:
+        - enable: True
