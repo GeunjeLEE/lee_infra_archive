@@ -6,4 +6,4 @@
         - mode: 644
         - template: jinja
         - context:
-            backends: {{ pillar['haproxy_backends'] }}
+            backends: {{ pillar['web_servers'] }}

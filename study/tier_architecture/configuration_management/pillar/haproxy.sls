@@ -1,3 +1,3 @@
-haproxy_backends:
+web_servers:
     - ip: 192.168.56.12
     - ip: 192.168.56.13
