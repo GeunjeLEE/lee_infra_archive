@@ -8,3 +8,5 @@
 
 nginx:
     pkg.installed
+    require:
+        - file: /etc/yum.repos.d/nginx.repo
