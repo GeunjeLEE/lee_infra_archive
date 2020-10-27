@@ -1,32 +1,31 @@
 
 # 구성
-## 환경 관리
-- infra
-  - vagrant 2.2.10
-  - virtualbox 6.1
-  - CentOS 7 Image
-    - CentOS Linux release 7.8.2003 (Core)
-    - 3.10.0-1127.el7.x86_64
-- config
-  - saltsatck 2019.2.5
+
 ## 구성도
 <img width="487" alt="KakaoTalk_20201026_004929407" src="https://user-images.githubusercontent.com/19552819/97111993-3841d780-1725-11eb-8bb5-9e617c29aee3.png">
 
 ### L4/L7 Switch
 - HAProxy
-- 80 port
 
 ### Presentation Tire
 - Nginx * 2
-- 8080 port
 
 ### Logic Tire
 - Node.js * 2
-- 3000 port
 
 ### Data Tire
 - Mysql * 1
-- 3306 port
+
+## 활용 도구
+- 서버 템플릿 도구
+  - vagrant 2.2.10
+  - virtualbox 6.1
+  - CentOS 7 Image
+    - CentOS Linux release 7.8.2003 (Core)
+    - 3.10.0-1127.el7.x86_64
+- 구성 관리 도구
+  - saltsatck 2019.2.5
+
 
 ## TODO
 - ~~인프라 구성관리 도구를 이용해 패키지 및 설정 관리 해보기~~
@@ -42,6 +41,9 @@
 - DB replication 구성해보기
   - application에서 read 요청이 발생할 경우, read-only(slave)로 요청 보내도록 구성
     - application에서 설정이 필요?
+- 모니터링 설정
+  - prometheus x grafana?
+  - ELK ?
 
 # 기본 설치
 
