@@ -1,11 +1,9 @@
 global
-   log /dev/log local0
-   log /dev/log local1 notice
-   chroot /var/lib/haproxy
-    stats timeout 30s
-    user haproxy
-    group haproxy
-    daemon
+   log 127.0.0.1 local0
+   log 127.0.0.1 local1 notice
+   user haproxy
+   group haproxy
+   daemon
 
 defaults
      log global
@@ -19,10 +17,18 @@ defaults
 frontend http_front
      bind *:80
      stats uri /haproxy?stats
-     default_backend http_backend
+     default_backend servers
 
-backend http_backend
+backend servers
+
      balance roundrobin
      {% for backend in backends -%}
      server nodejs_webapp {{ backend['ip'] }}:8080 check
      {% endfor %}
+
+listen stats
+     bind *:9000
+     stats enable
+     stats hide-version
+     stats realm Haproxy\ Statistics
+     stats uri /haproxy_stats
