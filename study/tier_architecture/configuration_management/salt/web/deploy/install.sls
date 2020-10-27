@@ -6,7 +6,9 @@
         - mode: 644
         - template: jinja
 
-nginx:
+pkg_install:
     pkg.installed:
+        -names:
+            - nginx
         - require:
             - file: /etc/yum.repos.d/nginx.repo
