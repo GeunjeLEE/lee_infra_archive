@@ -7,7 +7,7 @@ pkg_install:
 get_nodejs_webapp_src:
     git.latest:
         - name: https://github.com/LeekeunJe/lee_sample_node_app.git
-        - target: /home/
+        - target: /home/lee_sample_node_app
         - branch: master
         - require: 
             - pkg: pkg_install
@@ -18,6 +18,7 @@ npm_install:
         - names:
             - express
             - mysql
+            - ejs
         - dir: /home/lee_sample_node_app
         - require: 
             - git: get_nodejs_webapp_src
