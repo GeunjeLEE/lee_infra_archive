@@ -7,6 +7,6 @@
         - template: jinja
 
 nginx:
-    pkg.installed
+    pkg.installed:
         - require:
             - file: /etc/yum.repos.d/nginx.repo
