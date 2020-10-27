@@ -1,7 +1,7 @@
 
 # 구성
 
-## 구성도
+## 구성도(3 tier architecture)
 <img width="487" alt="KakaoTalk_20201026_004929407" src="https://user-images.githubusercontent.com/19552819/97111993-3841d780-1725-11eb-8bb5-9e617c29aee3.png">
 
 ### L4/L7 Switch
