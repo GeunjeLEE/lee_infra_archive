@@ -2,7 +2,7 @@
 # 구성
 
 ## 구성도(3 tier architecture)
-<img width="1168" alt="KakaoTalk_20201028_000400107_01" src="https://user-images.githubusercontent.com/19552819/97320501-36a51a80-18b1-11eb-8a5c-86e53ddffc5c.png">
+<img width="1178" alt="KakaoTalk_20201028_222122442_01" src="https://user-images.githubusercontent.com/19552819/97441821-7d0b7f80-196c-11eb-9b21-e7bd1cc69650.png">
 
 ### L4/L7 Switch
 - HAProxy
@@ -35,9 +35,8 @@
     - 설정을 코드(?)로 관리하는 것으로, 패키지 버전을 모두 동일하게 유지할 수 있다
     - 인프라 구성관리 도구를 이용하면, 새로운 서버를 구축하더라도 빠르게 패키지&설정을 배포하여 서비스 투입 가능
       - 설정 관리 파일을 github로 관리하는 것으로, 인프라 형상 버전 관리도 가능(새로운 설정 배포 & Rollback이 빠르다)
-- vrrp를 이용한 switch 이중화해보기
-  - HAProxy & keepalived?
-  - HAProxy 기본 vrrp 기능?
+- ~~vrrp를 이용한 switch 이중화해보기~~
+  - ~~HAProxy & keepalived~~
 - DB replication 구성해보기
   - application에서 read 요청이 발생할 경우, read-only(slave)로 요청 보내도록 구성
     - application에서 설정이 필요?
