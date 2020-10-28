@@ -16,8 +16,10 @@
         - mode: 644
         - template: jinja
         - context:
+            hostname: {{ grains['host'] }}
             keepalived_state: {{ pillar['keepalived']['hosts'][grains['host']]['state'] }}
-            vip: {{  pillar['keepalived']['vip'] }}
+            vip: {{ pillar['keepalived']['vip'] }}
+            priority: {{ pillar['keepalived']['priority'] }}
 
 haproxy:
     service.running:

@@ -7,5 +7,7 @@ keepalived:
     hosts:
         haproxy:
             state: MASTER
+            priority: 101
         haproxy2:
             state: BACKUP
+            priority: 100
