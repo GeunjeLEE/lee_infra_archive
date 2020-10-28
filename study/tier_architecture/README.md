@@ -43,6 +43,7 @@
 - 모니터링 설정
   - prometheus x grafana?
   - ELK ?
+- DSR(Direct Server Return) 설정 해보기
 
 # 기본 설치
 
