@@ -8,6 +8,10 @@
         - context:
             backends: {{ pillar['web_servers'] }}
 
+net.ipv4.ip_nonlocal_bind:
+  sysctl.present:
+    - value: 1
+
 /etc/keepalived/keepalived.conf:
     file.managed:
         - source: salt://haproxy/files/keepalived.conf.tmpl
