@@ -19,7 +19,7 @@
             hostname: {{ grains['host'] }}
             keepalived_state: {{ pillar['keepalived']['hosts'][grains['host']]['state'] }}
             vip: {{ pillar['keepalived']['vip'] }}
-            priority: {{ pillar['keepalived']['priority'] }}
+            priority: {{ pillar['keepalived']['hosts'][grains['host']]['priority'] }}
 
 haproxy:
     service.running:
