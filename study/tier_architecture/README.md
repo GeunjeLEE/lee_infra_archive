@@ -5,7 +5,7 @@
 <img width="1178" alt="KakaoTalk_20201028_222122442_01" src="https://user-images.githubusercontent.com/19552819/97441821-7d0b7f80-196c-11eb-9b21-e7bd1cc69650.png">
 
 ### L4/L7 Switch
-- HAProxy
+- HAProxy * 2
 
 ### Presentation Tire
 - Nginx * 2
