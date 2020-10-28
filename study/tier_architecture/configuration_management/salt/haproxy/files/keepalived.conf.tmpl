@@ -1,0 +1,26 @@
+! Configuration File for keepalived
+
+global_defs {
+   notification_email {
+    root@{{ hostname }}.com
+   }
+   notification_email_from root@{{ hostname }}.com
+   smtp_server 127.0.0.1
+   smtp_connect_timeout 30
+   router_id LVS_DEVEL
+}
+
+vrrp_instance VI_1 {
+    state {{ keepalived_state }}
+    interface eth2
+    virtual_router_id 51
+    priority {{ priority }} #used in election, 101 for master & 100 for backup
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass 1111
+    }
+    virtual_ipaddress {
+        {{ vip }}
+    }
+}
