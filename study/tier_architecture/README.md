@@ -2,10 +2,10 @@
 # 구성
 
 ## 구성도(3 tier architecture)
-<img width="1168" alt="KakaoTalk_20201028_000400107_01" src="https://user-images.githubusercontent.com/19552819/97320501-36a51a80-18b1-11eb-8a5c-86e53ddffc5c.png">
+<img width="1218" alt="KakaoTalk_20201029_230602739" src="https://user-images.githubusercontent.com/19552819/97584553-7d268080-1a3b-11eb-92c2-ca7407f5a48a.png">
 
 ### L4/L7 Switch
-- HAProxy
+- HAProxy * 2
 
 ### Presentation Tire
 - Nginx * 2
@@ -35,15 +35,14 @@
     - 설정을 코드(?)로 관리하는 것으로, 패키지 버전을 모두 동일하게 유지할 수 있다
     - 인프라 구성관리 도구를 이용하면, 새로운 서버를 구축하더라도 빠르게 패키지&설정을 배포하여 서비스 투입 가능
       - 설정 관리 파일을 github로 관리하는 것으로, 인프라 형상 버전 관리도 가능(새로운 설정 배포 & Rollback이 빠르다)
-- vrrp를 이용한 switch 이중화해보기
-  - HAProxy & keepalived?
-  - HAProxy 기본 vrrp 기능?
-- DB replication 구성해보기
-  - application에서 read 요청이 발생할 경우, read-only(slave)로 요청 보내도록 구성
-    - application에서 설정이 필요?
+- ~~vrrp를 이용한 switch 이중화해보기~~
+  - ~~HAProxy & keepalived~~
+- ~~DB replication 구성해보기~~
+  - application에서의 read 요청은 slave(read-only)로 요청 보내도록 구성()
 - 모니터링 설정
   - prometheus x grafana?
   - ELK ?
+- DSR(Direct Server Return) 설정 해보기
 
 # 기본 설치
 
@@ -95,6 +94,141 @@ CREATE TABLE BOARD (
   WDATE DATE
 );
 ```
+
+## mysql replica
+### Master
+```
+[]# vim /etc/my.cnf
+```
+```
+# For advice on how to change settings please see
+# http://dev.mysql.com/doc/refman/5.7/en/server-configuration-defaults.html
+
+[mysqld]
+#
+# Remove leading # and set to the amount of RAM for the most important data
+# cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.
+# innodb_buffer_pool_size = 128M
+#
+# Remove leading # to turn on a very important data integrity option: logging
+# changes to the binary log between backups.
+# log_bin
+#
+# Remove leading # to set options mainly useful for reporting servers.
+# The server defaults are faster for transactions and fast SELECTs.
+# Adjust sizes as needed, experiment to find the optimal values.
+# join_buffer_size = 128M
+# sort_buffer_size = 2M
+# read_rnd_buffer_size = 2M
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
+
+log-bin=mysql-bin
+max_binlog_size=100M
+expire_logs_days=7
+
+server-id=1
+binlog_do_db=db_test ## target replica DB name
+```
+```
+[]# systemctl restart mysqld
+```
+```
+[]# mysql -u root -p
+mysql > GRANT REPLICATION SLAVE ON *.*  TO 'reql'@'192.168.56.%' IDENTIFIED BY 'pwd123pwd';
+mysql > FLUSH PRIVILEGES;
+
+mysql > FLUSH TABLES WITH READ LOCK;
+
+mysql > SHOW MASTER STATUS;
++------------------+----------+--------------+------------------+-------------------+
+| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |
++------------------+----------+--------------+------------------+-------------------+
+| mysql-bin.000001 |      154 | db_test      |                  |                   |
++------------------+----------+--------------+------------------+-------------------+
+mysql > exit
+```
+```
+[]# mysqldump -u root -p db_test --master-data > dump.sql
+```
+
+### Slave
+```
+[]# vim /etc/my.cnf
+```
+```
+# For advice on how to change settings please see
+# http://dev.mysql.com/doc/refman/5.7/en/server-configuration-defaults.html
+
+[mysqld]
+#
+# Remove leading # and set to the amount of RAM for the most important data
+# cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.
+# innodb_buffer_pool_size = 128M
+#
+# Remove leading # to turn on a very important data integrity option: logging
+# changes to the binary log between backups.
+# log_bin
+#
+# Remove leading # to set options mainly useful for reporting servers.
+# The server defaults are faster for transactions and fast SELECTs.
+# Adjust sizes as needed, experiment to find the optimal values.
+# join_buffer_size = 128M
+# sort_buffer_size = 2M
+# read_rnd_buffer_size = 2M
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
+
+relay-log=mysql-relay-bin
+log-bin=mysql-bin
+
+server-id=2
+binlog_do_db=db_test
+read_only
+```
+```
+[]# scp user@ip:/path/to/dump.sql ./
+```
+```
+[]# mysql -u root -p db_test < dump.sql
+
+[]# mysql -u root -p 
+
+mysql > STOP SLAVE;
+
+mysql > CHANGE MASTER TO
+MASTER_HOST='192.168.56.16',
+MASTER_USER='reql' , 
+MASTER_PASSWORD='pwd123pwd',
+MASTER_PORT=3306,
+MASTER_LOG_FILE='mysql-bin.000001',★SHOW MASTER STATUS에서 확인
+MASTER_LOG_POS=154;★SHOW MASTER STATUS에서 확인
+
+mysql > START SLAVE;
+
+mysql > SHOW SLAVE STATUS \G;
+```
+
+### Master
+```
+[]# mysql -u root -p 
+
+mysql > UNLOCK TABLES;  
+```
+
+
 
 ## TODO
 - package manager와 compile는 언제 어느 상황에서 적합할까?

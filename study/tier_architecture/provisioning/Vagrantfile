@@ -28,10 +28,20 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   config.vm.define "haproxy" do |haproxy|
     haproxy.vm.hostname = "haproxy"
-    haproxy.vm.network "public_network"
     haproxy.vm.network 'private_network', ip: "192.168.56.11"
+    haproxy.vm.network 'public_network'
 
     haproxy.vm.provision "shell",
+      path: "scripts/install-salt-minion.sh", 
+      args: ["192.168.56.10", "haproxy"]
+  end
+
+    config.vm.define "haproxy2" do |haproxy2|
+    haproxy2.vm.hostname = "haproxy2"
+    haproxy2.vm.network 'private_network', ip: "192.168.56.17"
+    haproxy2.vm.network 'public_network'
+
+    haproxy2.vm.provision "shell",
       path: "scripts/install-salt-minion.sh", 
       args: ["192.168.56.10", "haproxy"]
   end
