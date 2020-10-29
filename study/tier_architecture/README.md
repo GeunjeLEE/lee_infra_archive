@@ -37,9 +37,8 @@
       - 설정 관리 파일을 github로 관리하는 것으로, 인프라 형상 버전 관리도 가능(새로운 설정 배포 & Rollback이 빠르다)
 - ~~vrrp를 이용한 switch 이중화해보기~~
   - ~~HAProxy & keepalived~~
-- DB replication 구성해보기
-  - application에서 read 요청이 발생할 경우, read-only(slave)로 요청 보내도록 구성
-    - application에서 설정이 필요?
+- ~~DB replication 구성해보기~~
+  - application에서의 read 요청은 slave(read-only)로 요청 보내도록 구성()
 - 모니터링 설정
   - prometheus x grafana?
   - ELK ?
