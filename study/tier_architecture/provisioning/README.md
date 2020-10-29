@@ -1,5 +1,5 @@
-## 구성되는 VM
-<img width="1181" alt="KakaoTalk_20201028_222122442" src="https://user-images.githubusercontent.com/19552819/97441815-7c72e900-196c-11eb-83b7-4c5e740c3a9b.png">
+## 생성되는 VM
+<img width="1313" alt="KakaoTalk_20201029_230602739_01" src="https://user-images.githubusercontent.com/19552819/97584557-7e57ad80-1a3b-11eb-8a69-609a67a5c585.png">
 
 - Host 공용 네트워크
   - Host PC가 사용중인 공용 네트워크
