@@ -14,7 +14,7 @@
 - Node.js * 2
 
 ### Data Tire
-- Mysql * 1
+- Mysql * 2
 
 ## 활용 도구
 - [서버 템플릿 도구](https://github.com/LeekeunJe/lee_infra_archive/tree/master/study/tier_architecture/provisioning)
