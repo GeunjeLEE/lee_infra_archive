@@ -96,6 +96,141 @@ CREATE TABLE BOARD (
 );
 ```
 
+## mysql replica
+### Master
+```
+[]# vim /etc/my.cnf
+```
+```
+# For advice on how to change settings please see
+# http://dev.mysql.com/doc/refman/5.7/en/server-configuration-defaults.html
+
+[mysqld]
+#
+# Remove leading # and set to the amount of RAM for the most important data
+# cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.
+# innodb_buffer_pool_size = 128M
+#
+# Remove leading # to turn on a very important data integrity option: logging
+# changes to the binary log between backups.
+# log_bin
+#
+# Remove leading # to set options mainly useful for reporting servers.
+# The server defaults are faster for transactions and fast SELECTs.
+# Adjust sizes as needed, experiment to find the optimal values.
+# join_buffer_size = 128M
+# sort_buffer_size = 2M
+# read_rnd_buffer_size = 2M
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
+
+log-bin=mysql-bin
+max_binlog_size=100M
+expire_logs_days=7
+
+server-id=1
+binlog_do_db=db_test ## target replica DB name
+```
+```
+[]# systemctl restart mysqld
+```
+```
+[]# mysql -u root -p
+mysql > GRANT REPLICATION SLAVE ON *.*  TO 'reql'@'192.168.56.%' IDENTIFIED BY 'pwd123pwd';
+mysql > FLUSH PRIVILEGES;
+
+mysql > FLUSH TABLES WITH READ LOCK;
+
+mysql > SHOW MASTER STATUS;
++------------------+----------+--------------+------------------+-------------------+
+| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |
++------------------+----------+--------------+------------------+-------------------+
+| mysql-bin.000001 |      154 | db_test      |                  |                   |
++------------------+----------+--------------+------------------+-------------------+
+mysql > exit
+```
+```
+[]# mysqldump -u root -p db_test --master-data > dump.sql
+```
+
+### Slave
+```
+[]# vim /etc/my.cnf
+```
+```
+# For advice on how to change settings please see
+# http://dev.mysql.com/doc/refman/5.7/en/server-configuration-defaults.html
+
+[mysqld]
+#
+# Remove leading # and set to the amount of RAM for the most important data
+# cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.
+# innodb_buffer_pool_size = 128M
+#
+# Remove leading # to turn on a very important data integrity option: logging
+# changes to the binary log between backups.
+# log_bin
+#
+# Remove leading # to set options mainly useful for reporting servers.
+# The server defaults are faster for transactions and fast SELECTs.
+# Adjust sizes as needed, experiment to find the optimal values.
+# join_buffer_size = 128M
+# sort_buffer_size = 2M
+# read_rnd_buffer_size = 2M
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
+
+relay-log=mysql-relay-bin
+log-bin=mysql-bin
+
+server-id=2
+binlog_do_db=db_test
+read_only
+```
+```
+[]# scp user@ip:/path/to/dump.sql ./
+```
+```
+[]# mysql -u root -p db_test < dump.sql
+
+[]# mysql -u root -p 
+
+mysql > STOP SLAVE;
+
+mysql > CHANGE MASTER TO
+MASTER_HOST='192.168.56.16',
+MASTER_USER='reql' , 
+MASTER_PASSWORD='pwd123pwd',
+MASTER_PORT=3306,
+MASTER_LOG_FILE='mysql-bin.000001',★SHOW MASTER STATUS에서 확인
+MASTER_LOG_POS=154;★SHOW MASTER STATUS에서 확인
+
+mysql > START SLAVE;
+
+mysql > SHOW SLAVE STATUS \G;
+```
+
+### Master
+```
+[]# mysql -u root -p 
+
+mysql > UNLOCK TABLES;  
+```
+
+
+
 ## TODO
 - package manager와 compile는 언제 어느 상황에서 적합할까?
 - 여러대 설치해야할 상황이라면
