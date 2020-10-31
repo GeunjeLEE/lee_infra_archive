@@ -105,4 +105,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       path: "scripts/install-salt-minion.sh", 
       args: ["192.168.56.10", "db"]
   end
+
+  # ========================================================= monitoring
+  config.vm.define "monitoring" do |monitoring|
+    monitoring.vm.hostname = "monitoring"
+    monitoring.vm.network 'private_network', ip: "192.168.56.19"
+
+    monitoring.vm.provision "shell",
+      path: "scripts/install-salt-minion.sh", 
+      args: ["192.168.56.10", "monitoring"]
+  end
+
 end
