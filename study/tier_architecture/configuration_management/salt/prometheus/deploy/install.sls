@@ -1,10 +1,11 @@
 pkg_install:
-    pkg.installed:
-      - names:
-        - wget
+  pkg.installed:
+    - names:
+      - wget
  
-prometheus:
+create_prometheus_user:
   user.present:
+    - name: prometheus
     - createhome: False
     - shell: /sbin/false
 
