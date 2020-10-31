@@ -9,4 +9,5 @@ scrape_configs:
       - targets:
         {% for target in targets -%}
         - '{{ target['ip'] }}:9090'
+        {% endfor %}
   {% endfor %}
