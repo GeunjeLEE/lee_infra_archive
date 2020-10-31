@@ -8,6 +8,6 @@ base:
     'roles:haproxy':
         - match: grain
         - haproxy
-    'roles:prometheus':
+    'roles:monitoring':
         - match: grain
         - prometheus

@@ -39,14 +39,16 @@ prometheus-2.14.0.linux-amd64.tar.gz:
     - user: prometheus
     - group: prometheus
 
-/etc/prometheus:
+conoles_copy_to_/etc/prometheus:
   file.copy:
+    - name: /etc/prometheus
     - source: /tmp/prometheus-2.14.0.linux-amd64/consoles
     - user: prometheus
     - group: prometheus
 
-/etc/prometheus:
+console_libraries_copy_to_/etc/prometheus:
   file.copy:
+    - name: /etc/prometheus
     - source: /tmp/prometheus-2.14.0.linux-amd64/console_libraries
     - user: prometheus
     - group: prometheus

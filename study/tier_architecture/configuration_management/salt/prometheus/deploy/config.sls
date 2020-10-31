@@ -5,4 +5,4 @@
         - group: prometheus
         - template: jinja
         - context:
-            node_exporter_targets: {{ pillar['node_exporter_targets']['node_exporter_targets'] }}
+            node_exporter_targets: {{ pillar['node_exporter_targets'] }}
