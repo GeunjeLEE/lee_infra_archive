@@ -11,5 +11,5 @@ prometheus:
   service.running:
     - enable: True
     - reload: True
-    - watch: 
+    - require: 
       - file: /etc/prometheus/prometheus.yml

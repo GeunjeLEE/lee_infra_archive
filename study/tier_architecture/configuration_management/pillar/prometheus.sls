@@ -1,7 +1,4 @@
 node_exporter_targets:
-    - name: mgmt
-      ips: 
-        - 192.168.56.10
     - name: haproxy
       ips:
         - 192.168.56.11
