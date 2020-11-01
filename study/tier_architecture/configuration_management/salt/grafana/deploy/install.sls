@@ -10,6 +10,6 @@ pkg_install_for_grafana:
     - names:
       - grafana
 
-grafana:
+grafana-server:
   service.running:
     - enable: True
