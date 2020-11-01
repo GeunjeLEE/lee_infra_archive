@@ -1,0 +1,17 @@
+global:
+  scrape_interval: 10s
+
+scrape_configs:
+  {% for targets in node_exporter_targets -%}
+  - job_name: '{{ targets['name'] }}'
+    scrape_interval: 5s
+    static_configs:
+      - targets:
+        {% for ip in targets['ips'] -%}
+        - '{{ ip }}:9100'
+        {%- if targets['name'] == 'prometheus_master' %}
+        - '{{ ip }}:9090'
+        {%- endif %}
+        {% endfor %}
+  {% endfor %}
+
