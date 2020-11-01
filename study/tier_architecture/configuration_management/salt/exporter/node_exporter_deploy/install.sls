@@ -23,16 +23,16 @@ node_exporter-0.18.1.linux-amd64.tar.gz:
 /usr/local/bin/node_exporter:
   file.managed:
     - source: /tmp/node_exporter-0.18.1.linux-amd64/node_exporter 
-    - user: prometheus
-    - group: prometheus
+    - user: nodexporter
+    - group: nodexporter
     - require: 
       - archive: node_exporter-0.18.1.linux-amd64.tar.gz
 
 /etc/systemd/system/node_exporter.service:
   file.managed:
     - source: salt://exporter/files/node_exporter.service.tmpl
-    - user: prometheus
-    - group: prometheus
+    - user: nodexporter
+    - group: nodexporter
     - require: 
       - file: /usr/local/bin/node_exporter
 
@@ -42,7 +42,7 @@ systemd-reload:
     - require: 
       - file: /etc/systemd/system/node_exporter.service
 
-prometheus:
+node_exporter:
   service.running:
     - enable: True
     - require: 
