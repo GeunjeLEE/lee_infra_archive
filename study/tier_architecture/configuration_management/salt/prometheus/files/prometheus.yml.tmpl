@@ -8,7 +8,10 @@ scrape_configs:
     static_configs:
       - targets:
         {% for ip in targets['ips'] -%}
+        - '{{ ip }}:9100'
+        {%- if 'monitoring' in grains['roles'] %}
         - '{{ ip }}:9090'
+        {%- endif %}
         {% endfor %}
   {% endfor %}
 
