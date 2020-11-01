@@ -4,7 +4,6 @@
         - user: root
         - group: root
         - mode: 644
-        - template: jinja
 
 pkg_install:
     pkg.installed:

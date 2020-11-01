@@ -11,6 +11,7 @@ base:
     'roles:monitoring':
         - match: grain
         - prometheus
+        - grafana
     'roles:exporter':
         - match: grain
         - exporter
