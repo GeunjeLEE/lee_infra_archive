@@ -29,12 +29,10 @@ prometheus-2.14.0.linux-amd64.tar.gz:
   archive.extracted:
     - name: /tmp/
     - source: https://github.com/prometheus/prometheus/releases/download/v2.14.0/prometheus-2.14.0.linux-amd64.tar.gz
-    - source_hash: md5=1124545debb407b0bc06b4700bee2a68
+    - skip_verify: True
     - tar_options: V
     - archive_format: tar
     - if_missing: /usr/local/bin/prometheus
-    - require: 
-      - file: /var/lib/prometheus
 
 /usr/local/bin/prometheus:
   file.copy:
