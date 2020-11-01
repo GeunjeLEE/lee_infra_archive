@@ -1,4 +1,4 @@
-pkg_install:
+pkg_install_for_prometheus:
   pkg.installed:
     - names:
       - wget
@@ -76,7 +76,7 @@ console_libraries_copy_to_/etc/prometheus:
     - require: 
       - file: console_libraries_copy_to_/etc/prometheus
 
-systemd-reload:
+systemd_reload_for_prometheus:
   cmd.run :
     - name : systemctl --system daemon-reload
     - require: 

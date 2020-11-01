@@ -1,4 +1,4 @@
-pkg_install:
+pkg_install_for_node_exporter:
   pkg.installed:
     - names:
       - wget
@@ -37,7 +37,7 @@ node_exporter-0.18.1.linux-amd64.tar.gz:
     - require: 
       - file: /usr/local/bin/node_exporter
 
-systemd-reload:
+systemd_reload_for_node_exporter:
   cmd.run :
     - name : systemctl --system daemon-reload
     - require: 
