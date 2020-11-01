@@ -6,3 +6,10 @@
     - template: jinja
     - context:
       node_exporter_targets: {{ pillar['node_exporter_targets'] }}
+
+prometheus:
+  service.running:
+    - enable: True
+    - reload: True
+    - watch: 
+      - file: /etc/prometheus/prometheus.yml

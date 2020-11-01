@@ -81,9 +81,3 @@ systemd-reload:
     - name : systemctl --system daemon-reload
     - require: 
       - file: /etc/systemd/system/prometheus.service
-
-prometheus:
-  service.running:
-    - enable: True
-    - require: 
-      - cmd: systemd-reload
