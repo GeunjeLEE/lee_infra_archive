@@ -25,6 +25,7 @@ node_exporter-0.18.1.linux-amd64.tar.gz:
     - source: /tmp/node_exporter-0.18.1.linux-amd64/node_exporter 
     - user: nodexporter
     - group: nodexporter
+    - mode: 755
     - require: 
       - archive: node_exporter-0.18.1.linux-amd64.tar.gz
 
