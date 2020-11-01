@@ -34,13 +34,13 @@ node_exporter-0.18.1.linux-amd64.tar.gz:
     - user: prometheus
     - group: prometheus
     - require: 
-      - file: console_libraries_copy_to_/etc/prometheus
+      - file: /usr/local/bin/node_exporter
 
 systemd-reload:
   cmd.run :
     - name : systemctl --system daemon-reload
     - require: 
-      - file: /etc/systemd/system/prometheus.service
+      - file: /etc/systemd/system/node_exporter.service
 
 prometheus:
   service.running:
