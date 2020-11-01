@@ -9,7 +9,7 @@ create_nodexporter_user:
     - createhome: False
     - shell: /sbin/false
     - require: 
-      - pkg: pkg_install
+      - pkg: pkg_install_for_node_exporter
 
 node_exporter-0.18.1.linux-amd64.tar.gz:
   archive.extracted:
@@ -47,5 +47,5 @@ node_exporter:
   service.running:
     - enable: True
     - require: 
-      - cmd: systemd-reload
+      - cmd: systemd_reload_for_node_exporter
 

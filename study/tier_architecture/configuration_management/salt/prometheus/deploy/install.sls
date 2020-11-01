@@ -9,7 +9,7 @@ create_prometheus_user:
     - createhome: False
     - shell: /sbin/false
     - require: 
-      - pkg: pkg_install
+      - pkg: pkg_install_for_prometheus
 
 /etc/prometheus:
   file.directory:
