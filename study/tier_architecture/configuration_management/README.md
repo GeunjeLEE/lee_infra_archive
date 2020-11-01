@@ -72,7 +72,7 @@ salt -G 'roles:monitoring' state.apply prometheus.deploy.config test=True
 salt -G 'roles:monitoring' state.apply prometheus.deploy.config
 ```
 
-## exporter 배포
+### exporter 배포
 ```
 salt -G 'roles:exporter' state.apply exporter.deploy test=True
 salt -G 'roles:exporter' state.apply exporter.deploy
