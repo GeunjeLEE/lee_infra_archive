@@ -11,7 +11,7 @@ base:
     'roles:monitoring':
         - match: grain
         - prometheus
-    'roles:exporter'
+    'roles:exporter':
         - match: grain
         - exporter
 
