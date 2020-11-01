@@ -2,7 +2,7 @@
 # 구성
 
 ## 구성도(3 tier architecture)
-<img width="1198" alt="KakaoTalk_20201029_231840305" src="https://user-images.githubusercontent.com/19552819/97586072-3174d680-1a3d-11eb-9523-dddda5ea4cc8.png">
+<img width="1195" alt="architecture" src="https://user-images.githubusercontent.com/19552819/97803976-2796e180-1c90-11eb-9e19-26978cc9cf9e.png">
 
 ### L4/L7 Switch
 - HAProxy * 2
@@ -15,6 +15,13 @@
 
 ### Data Tire
 - Mysql * 2
+
+### mgmt
+- Saltstack * 1
+
+### monitoring
+- Prometheus & Grafana * 1
+  - 각 대상 서버에 node_exporter
 
 ## 활용 도구
 - [서버 템플릿 도구](https://github.com/LeekeunJe/lee_infra_archive/tree/master/study/tier_architecture/provisioning)
@@ -39,10 +46,11 @@
   - ~~HAProxy & keepalived~~
 - ~~DB replication 구성해보기~~
   - application에서의 read 요청은 slave(read-only)로 요청 보내도록 구성()
-- 모니터링 설정
-  - prometheus x grafana?
+- ~~모니터링 설정~~
+  - prometheus x grafana? -> 이쪽으로
+    - prometheus가 polling 방식이기 때문에.. 각 서버의 메모리를 사용하지말고, prometheusa만 사용하도록 하자..'
+      - host의 메모리를 다 쓸지도 모르니... 최대한 아끼는 방향으로...
   - ELK ?
-- DSR(Direct Server Return) 설정 해보기
 
 # 기본 설치
 
