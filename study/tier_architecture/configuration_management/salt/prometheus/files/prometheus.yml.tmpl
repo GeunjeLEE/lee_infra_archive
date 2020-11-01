@@ -9,7 +9,7 @@ scrape_configs:
       - targets:
         {% for ip in targets['ips'] -%}
         - '{{ ip }}:9100'
-        {%- if targets['name'] == 'monitoring' %}
+        {%- if targets['name'] == 'prometheus_master' %}
         - '{{ ip }}:9090'
         {%- endif %}
         {% endfor %}
