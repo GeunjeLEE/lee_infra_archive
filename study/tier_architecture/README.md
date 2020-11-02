@@ -2,9 +2,9 @@
 # 구성
 
 ## 구성도(3 tier architecture)
-<img width="1195" alt="architecture" src="https://user-images.githubusercontent.com/19552819/97803976-2796e180-1c90-11eb-9e19-26978cc9cf9e.png">
+<img width="1188" alt="KakaoTalk_20201102_171057388" src="https://user-images.githubusercontent.com/19552819/97844518-8874f700-1d2e-11eb-91c7-bcc5255d462b.png">
 
-### L4/L7 Switch
+### LoadBalancer
 - HAProxy * 2
 
 ### Presentation Tire
@@ -42,7 +42,7 @@
     - 설정을 코드(?)로 관리하는 것으로, 패키지 버전을 모두 동일하게 유지할 수 있다
     - 인프라 구성관리 도구를 이용하면, 새로운 서버를 구축하더라도 빠르게 패키지&설정을 배포하여 서비스 투입 가능
       - 설정 관리 파일을 github로 관리하는 것으로, 인프라 형상 버전 관리도 가능(새로운 설정 배포 & Rollback이 빠르다)
-- ~~vrrp를 이용한 switch 이중화해보기~~
+- ~~vrrp를 이용한 LB 이중화해보기~~
   - ~~HAProxy & keepalived~~
 - ~~DB replication 구성해보기~~
   - application에서의 read 요청은 slave(read-only)로 요청 보내도록 구성()
