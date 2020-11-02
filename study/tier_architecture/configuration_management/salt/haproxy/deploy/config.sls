@@ -30,8 +30,6 @@ net.ipv4.ip_nonlocal_bind:
     - source: salt://haproxy/files/haproxy.conf.log.tmpl
     - user: root
     - group: root
-    - mode: 644- user: root
-    - group: root
     - mode: 644
 
 rsyslog:
