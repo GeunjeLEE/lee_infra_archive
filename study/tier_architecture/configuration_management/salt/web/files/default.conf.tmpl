@@ -1,6 +1,6 @@
 upstream backend {
     {% for backend in backends -%}
-    server {{ backend['ip] }}:3000;
+    server {{ backend['ip'] }}:3000;
     {% endfor %}
 }
 
