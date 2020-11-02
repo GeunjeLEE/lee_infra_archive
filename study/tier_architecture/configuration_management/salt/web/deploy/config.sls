@@ -6,7 +6,7 @@
         - mode: 644
         - template: jinja
         - context:
-            backend_ip: {{ pillar['backends'] }}
+            backends: {{ pillar['backends'] }}
 
 nginx:
     service.running:
