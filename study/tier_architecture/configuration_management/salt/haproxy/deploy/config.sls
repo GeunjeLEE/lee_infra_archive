@@ -32,6 +32,13 @@ net.ipv4.ip_nonlocal_bind:
     - group: root
     - mode: 644
 
+/etc/default/haproxy:
+  file.managed:
+    - source: salt://haproxy/files/haproxy.default
+    - user: root
+    - group: root
+    - mode: 644
+
 rsyslog:
   service.running:
     - enable: True
