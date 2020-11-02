@@ -28,7 +28,7 @@ net.ipv4.ip_nonlocal_bind:
 /etc/rsyslog.d/haproxy.conf:
   file.managed:
     - source: salt://haproxy/files/haproxy.conf.log.tmpl
-        - user: root
+    - user: root
     - group: root
     - mode: 644- user: root
     - group: root
