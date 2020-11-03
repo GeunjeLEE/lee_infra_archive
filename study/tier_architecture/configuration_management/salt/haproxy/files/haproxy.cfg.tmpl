@@ -22,7 +22,7 @@ frontend http_front
 backend servers
      balance roundrobin
      {% for backend in backends -%}
-     server nodejs_webapp {{ backend['ip'] }}:8080 check
+     server {{ backend['hostname'] }} {{ backend['ip'] }}:8080 check
      {% endfor %}
 
 listen stats
