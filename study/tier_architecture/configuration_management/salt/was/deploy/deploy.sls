@@ -3,8 +3,6 @@ get_nodejs_webapp_src:
         - name: https://github.com/LeekeunJe/lee_sample_node_app.git
         - target: /home/lee_sample_node_app
         - branch: master
-        - require: 
-            - pkg: pkg_install
 
 npm_install:
     npm.installed:
@@ -12,6 +10,10 @@ npm_install:
             - express
             - mysql
             - ejs
+            - morgan
+            - winston
+            - winston-daily-rotate-file
+            - app-root-path
         - dir: /home/lee_sample_node_app
         - require: 
             - git: get_nodejs_webapp_src
