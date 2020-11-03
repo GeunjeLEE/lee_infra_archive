@@ -12,6 +12,10 @@ npm_install:
             - express
             - mysql
             - ejs
+            - morgan
+            - winston
+            - winston-daily-rotate-file
+            - app-root-path
         - dir: /home/lee_sample_node_app
         - require: 
             - git: get_nodejs_webapp_src
