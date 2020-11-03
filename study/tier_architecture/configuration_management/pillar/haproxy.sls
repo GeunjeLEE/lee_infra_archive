@@ -1,6 +1,8 @@
 web_servers:
-    - ip: 192.168.56.12
-    - ip: 192.168.56.13
+    - hostname: web2
+      ip: 192.168.56.12
+    - hostname: web2
+      ip: 192.168.56.13
 
 keepalived:
     vip: 172.22.1.103/22
