@@ -1,5 +1,5 @@
 web_servers:
-    - hostname: web2
+    - hostname: web1
       ip: 192.168.56.12
     - hostname: web2
       ip: 192.168.56.13
