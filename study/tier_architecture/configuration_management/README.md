@@ -1,4 +1,4 @@
-## 배포
+# SaltStack을 이용한
 SaltStack을 이용하여, 서버가 state에 정의한 상태(state)가 되도록 한다.<br>
 멱등성의 성질을 가지고 있으므로, 몇 번을 배포하더라도 항상 동일한 형태가 된다.
 
@@ -82,4 +82,188 @@ salt -G 'roles:exporter' state.apply exporter.deploy
 ```
 salt -G 'roles:monitoring' state.apply grafana test=True
 salt -G 'roles:monitoring' state.apply grafana
+```
+
+# 메뉴얼
+
+## haproxy
+```
+yum install haproxy
+```
+
+## nginx
+
+```
+/etc/yum.repo.d/nginx.repo 
+
+[nginx]
+name=nginx repo
+baseurl=https://nginx.org/packages/centos/$releasever/$basearch/
+gpgcheck=0
+enabled=1
+
+yum install nginx -y
+```
+
+## nodejs 
+```
+curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
+
+yum install nodejs
+```
+
+## mysql
+
+```
+rpm -ivh https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+yum install mysql-community-server mysql-community-client mysql-community-libs mysql-community-common mysql-community-libs-compat
+```
+
+```
+CREATE USER 'examuser'@'192.168.56.%' IDENTIFIED BY 'pwd123pwd';
+GRANT ALL PRIVILEGES ON *.* TO 'examuser'@'192.168.56.%' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'examuser'@'localhost' IDENTIFIED BY 'pwd123pwd';
+FLUSH PRIVILEGES;
+
+CREATE DATABASE db_test;
+
+CREATE TABLE BOARD (
+  ID VARCHAR(50),
+  TITLE VARCHAR(200),
+  CONTENT VARCHAR(1000),
+  WDATE DATE
+);
+```
+
+## mysql replica
+### Master
+```
+[]# vim /etc/my.cnf
+```
+```
+# For advice on how to change settings please see
+# http://dev.mysql.com/doc/refman/5.7/en/server-configuration-defaults.html
+
+[mysqld]
+#
+# Remove leading # and set to the amount of RAM for the most important data
+# cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.
+# innodb_buffer_pool_size = 128M
+#
+# Remove leading # to turn on a very important data integrity option: logging
+# changes to the binary log between backups.
+# log_bin
+#
+# Remove leading # to set options mainly useful for reporting servers.
+# The server defaults are faster for transactions and fast SELECTs.
+# Adjust sizes as needed, experiment to find the optimal values.
+# join_buffer_size = 128M
+# sort_buffer_size = 2M
+# read_rnd_buffer_size = 2M
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
+
+log-bin=mysql-bin
+max_binlog_size=100M
+expire_logs_days=7
+
+server-id=1
+binlog_do_db=db_test ## target replica DB name
+```
+```
+[]# systemctl restart mysqld
+```
+```
+[]# mysql -u root -p
+mysql > GRANT REPLICATION SLAVE ON *.*  TO 'reql'@'192.168.56.%' IDENTIFIED BY 'pwd123pwd';
+mysql > FLUSH PRIVILEGES;
+
+mysql > FLUSH TABLES WITH READ LOCK;
+
+mysql > SHOW MASTER STATUS;
++------------------+----------+--------------+------------------+-------------------+
+| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |
++------------------+----------+--------------+------------------+-------------------+
+| mysql-bin.000001 |      154 | db_test      |                  |                   |
++------------------+----------+--------------+------------------+-------------------+
+mysql > exit
+```
+```
+[]# mysqldump -u root -p db_test --master-data > dump.sql
+```
+
+### Slave
+```
+[]# vim /etc/my.cnf
+```
+```
+# For advice on how to change settings please see
+# http://dev.mysql.com/doc/refman/5.7/en/server-configuration-defaults.html
+
+[mysqld]
+#
+# Remove leading # and set to the amount of RAM for the most important data
+# cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.
+# innodb_buffer_pool_size = 128M
+#
+# Remove leading # to turn on a very important data integrity option: logging
+# changes to the binary log between backups.
+# log_bin
+#
+# Remove leading # to set options mainly useful for reporting servers.
+# The server defaults are faster for transactions and fast SELECTs.
+# Adjust sizes as needed, experiment to find the optimal values.
+# join_buffer_size = 128M
+# sort_buffer_size = 2M
+# read_rnd_buffer_size = 2M
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
+
+relay-log=mysql-relay-bin
+log-bin=mysql-bin
+
+server-id=2
+binlog_do_db=db_test
+read_only
+```
+```
+[]# scp user@ip:/path/to/dump.sql ./
+```
+```
+[]# mysql -u root -p db_test < dump.sql
+
+[]# mysql -u root -p 
+
+mysql > STOP SLAVE;
+
+mysql > CHANGE MASTER TO
+MASTER_HOST='192.168.56.16',
+MASTER_USER='reql' , 
+MASTER_PASSWORD='pwd123pwd',
+MASTER_PORT=3306,
+MASTER_LOG_FILE='mysql-bin.000001',★SHOW MASTER STATUS에서 확인
+MASTER_LOG_POS=154;★SHOW MASTER STATUS에서 확인
+
+mysql > START SLAVE;
+
+mysql > SHOW SLAVE STATUS \G;
+```
+
+### Master
+```
+[]# mysql -u root -p 
+
+mysql > UNLOCK TABLES;  
 ```
