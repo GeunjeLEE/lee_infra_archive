@@ -2,7 +2,7 @@
 # 구성
 
 ## 구성도(3 tier architecture)
-<img width="1210" alt="KakaoTalk_20201102_215230796" src="https://user-images.githubusercontent.com/19552819/97870114-d5b88f00-1d55-11eb-862a-d3420327864c.png">
+<img width="1217" alt="KakaoTalk_20201102_215230796" src="https://user-images.githubusercontent.com/19552819/98116251-62488600-1eeb-11eb-9f05-7da2d60f2472.png">
 
 ### LoadBalancer
 - HAProxy * 2
