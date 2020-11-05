@@ -60,6 +60,11 @@
 ## 추가
 - LB
   - 기본적으로
+    - ![slb](https://user-images.githubusercontent.com/19552819/98251343-f3872d80-1fbb-11eb-9140-aae796b26fe4.jpg)
+    - Internet → A → L3 Switch → B  → L4 Switch → C → Web Server → C → L4 Switch → B → L3 Switch → A → Internet
+  - DSR이면
+    - ![dsr](https://user-images.githubusercontent.com/19552819/98251348-f41fc400-1fbb-11eb-990d-d569334cebde.jpg)
+    - Internet → A → L3 Switch → B → L4 Switch → B -> L3 Switch -> C → L2 Switch → D → Web Server 1 → D → L2 Switch → C → L3 Switch → Internet
   - DSR
     - 보통 서비스에서는 Inbound traffic 대비 Outbound traffic이 월등히 높다.
       - Outbound traffic을 SLB에서 모두 수용하게 될 경우 리소스 소모가 커질 수 밖에 없다.
