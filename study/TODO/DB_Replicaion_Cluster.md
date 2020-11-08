@@ -1,0 +1,43 @@
+# DB 이중화
+## 기존
+  - DB single
+    - 하나의 서버로 구성하며, DB서버가 다운되면 다시 복구하기까지 서비스가 정지된다.
+  - DB 복제(Replication)
+    - 하나의 DB서버를 하나 더 구축하여 데이터를 복제한다.(Master <-> Slave)
+      - Master서버가 다운되었을때, Slave서버의 IP를 바라보도록 설정을 변경하여 대응할 수 있다.
+    - Single 구성보다는 Down Time이 줄었지만
+      - 역시 장애를 인지하고, 각 App서버가 Slave 서버를 바라보도록 설정을 배포하는 시간 동안 서비스가 중단된다.
+  - DB 복제 + VIP
+    - 기존의 복제 구성에서 Master에 VIP를 추가하고 각 App서버는 VIP를 바라보도록 한다.
+      - 장애가 발생하면 Master에 붙어있는 VIP를 Slave로 옮긴다.
+        - 이것으로 App 서버의 설정을 새로 배포하지 않아도 대응이 가능하다.
+    - Failover 과정에서 순단은 일어나지만, 기존의 구성보다 더 빠르게 장애를 대응할 수 있다.
+      - 자동으로 Health Check + Failover를 해주는 이중화 방안이 있으면 수고를 덜 수 있다.
+
+## 이중화 방안
+  - HW 이중화
+    - Shared Disk(예 : OS Cluster / RHCS)
+      - Master를 Active-Standby로 구성하고, 2대의 서버는 같은 Disk(shared disk)를 바라본다.
+        - 평상시는 Master(Active)를 shared disk에 연결하고 VIP를 붙여 Mysql를 서비스한다.
+        - Master(Active)가 장애가 나면 Master(Standby)를 shared disk에 연결하고 VIP를 붙여 서비스한다.
+          - 평상시 Master(Standby)는 Mysql를 서비스하고 있지 않다가 장애시에 Failover용도로만 사용한다.
+        - 단점
+          - RHCS 솔루션 구매가 필요하고, 고비용의 Shared Disk가 필요하다.
+    - Disk 복제(DRBD + Corosync + Pacemaker)
+      - Master를 Active-Standby로 구성하고 각각의 Disk를 바라본다.
+        - Active에 기록된 데이터는 네트워크를 통해 Standby로 Disk를 복제한다. (Sync)
+          - 그러므로, Network Latency에 의해 성능에 영향을 받는다.
+      - 평상시는 Master(Active)에 VIP를 붙여 Mysql를 서비스한다.
+      - Shared disk방식에 비해 라이센스, 고성능의 Disk 없이 사용 가능하다.
+    - 공통 적으로
+      - Standby는 Failover시에만 사용가능하다.
+      - 백업을 위한 추가 서버가 필요하다.
+      - 유지 보수 및 장애 대응이 어렵다.(OS 및 하드웨어에 대한 지식이 필요하다.)
+  - Replication 이중화
+    - MMM(Multi-Master Replication Manager)
+      - Perl 기반의 Auto Failover Open Source
+      - MMM Monitor에서 DB서버의 Health Check와 Failover를 수행한다.
+      - Monitor - Agent 방식
+      - 구성
+        - MMM monitor
+        - Master (Active) <--양방향 복제--> Master (Standby/Read-only)
