@@ -7,7 +7,7 @@ saltstack의 grains를 이용하여 노드에 역할을 부여하고,
 
 미대응
 - DB
-- nfs
+- NFS
 
 #### roles 추가 설정은
 ```
