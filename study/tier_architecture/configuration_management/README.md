@@ -84,6 +84,10 @@ salt -G 'roles:monitoring' state.apply grafana test=True
 salt -G 'roles:monitoring' state.apply grafana
 ```
 
+## 미대응
+- DB
+- nfs
+
 # 메뉴얼
 
 ## haproxy
