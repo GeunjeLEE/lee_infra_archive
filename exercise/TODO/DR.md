@@ -50,6 +50,9 @@
 - 즉각적인 복구
   - 특정 시점 사본과 유사하다, DB를 복사하는 대신, 가상 머신의 스냅샷을 생성한다.
 
+## 예시
+- [Disaster Recovery for On-Premise Fusion Applications](https://www.ateam-oracle.com/disaster-recovery-for-on-premise-fusion-applications)
+
 # 복제
 ## 복제 방식
 - H/W적 복제 방식
@@ -121,3 +124,15 @@
   - 백업 작업은 전체 백업보다 빠르지만 증분 백업보다 느리다.
     - 복원 작업은 전체 백업보다 느리지만 증분 백업보다 빠릅니다.
 
+# GSLB(Global Service Load Balancing) + HAProxy
+참고 : https://d2.naver.com/helloworld/284659
+
+- global 서비스가 증가되면서 IDC 간 이중화 및 global 환경에서의 무정지 서비스를 위한 DR 시스템 구축이 필수 요구사항이 되었다. 
+  - GSLB 구축에 L4 스위치를 사용할 수도 있지만 GSLB 구성용 L4는 고가의 장비이다.
+  - L4를 이용한 GSLB 대신 DNS(BIND)를 이용해 구축할 수 있다.
+  - GSLB L4 대신, DNS를 이용해 GSLB를 지원할 수 있다?
+    - 클라이언트에서 DNS로 도메인 조회
+    - 근거리 IDC 정보 전달
+      - 그런데, DNS로 GSLB 구성을 하면, Health Check는 어떻게 하지?
+      - DNS 캐시는?
+  - DNS와 GSLB에 대해서 [참고(2012년 기사)](https://www.netmanias.com/ko/post/blog/5620/dns-data-center-gslb-network-protocol/global-server-load-balancing-for-enterprise-part-1-concept-workflow)
