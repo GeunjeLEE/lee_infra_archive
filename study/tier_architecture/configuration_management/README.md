@@ -5,6 +5,10 @@ SaltStack을 이용하여, 서버가 state에 정의한 상태(state)가 되도�
 saltstack의 grains를 이용하여 노드에 역할을 부여하고, 
 정의된 state 템플릿을 배포했을때 역할에 따른 상태로 변경될 수 있도록 한다.
 
+미대응
+- DB
+- nfs
+
 #### roles 추가 설정은
 ```
 salt 'target' cmd.run 'echo "  - new_role" >> /etc/salt/grains'
@@ -83,10 +87,6 @@ salt -G 'roles:exporter' state.apply exporter.deploy
 salt -G 'roles:monitoring' state.apply grafana test=True
 salt -G 'roles:monitoring' state.apply grafana
 ```
-
-## 미대응
-- DB
-- nfs
 
 # 메뉴얼
 
