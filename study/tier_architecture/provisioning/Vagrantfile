@@ -116,4 +116,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       args: ["192.168.56.10", "monitoring"]
   end
 
+  # ========================================================= nfs
+  config.vm.define "nfs" do |nfs|
+    nfs.vm.hostname = "nfs"
+    nfs.vm.network 'private_network', ip: "192.168.56.20"
+  end
 end
