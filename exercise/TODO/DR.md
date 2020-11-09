@@ -53,6 +53,8 @@
 ## 예시
 - [Disaster Recovery for On-Premise Fusion Applications](https://www.ateam-oracle.com/disaster-recovery-for-on-premise-fusion-applications)
 
+![예시](https://user-images.githubusercontent.com/19552819/98556027-f3ea3600-22e5-11eb-92a3-2e2036356cec.JPG)
+
 # 복제
 ## 복제 방식
 - H/W적 복제 방식
