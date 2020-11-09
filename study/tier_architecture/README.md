@@ -1,5 +1,5 @@
 
-# 구성
+# 구성 - virtual box를 이용해 로컬 환경에 구축해보기
 
 ## 구성도(3 tier architecture)
 <img width="1192" alt="architecture" src="https://user-images.githubusercontent.com/19552819/98538813-b0d09880-22ce-11eb-9111-a62317a1aae8.png">
