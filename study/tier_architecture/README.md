@@ -2,7 +2,7 @@
 # 구성
 
 ## 구성도(3 tier architecture)
-<img width="1217" alt="KakaoTalk_20201102_215230796" src="https://user-images.githubusercontent.com/19552819/98116251-62488600-1eeb-11eb-9f05-7da2d60f2472.png">
+<img width="1192" alt="architecture" src="https://user-images.githubusercontent.com/19552819/98538813-b0d09880-22ce-11eb-9111-a62317a1aae8.png">
 
 ### LoadBalancer
 - HAProxy * 2
@@ -16,12 +16,15 @@
 ### Data Tier
 - Mysql * 2
 
-### mgmt
+### Mgmt
 - Saltstack * 1
 
-### monitoring
+### Monitoring
 - Prometheus & Grafana * 1
   - 각 서버에 node_exporter
+  
+### Storage
+  - nfs * 1
 
 ## 활용 도구
 - [서버 템플릿 도구](https://github.com/LeekeunJe/lee_infra_archive/tree/master/study/tier_architecture/provisioning)
