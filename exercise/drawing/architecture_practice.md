@@ -68,5 +68,5 @@ DMZ구성 해보기
     - 그렇다면
       - L3DSR 구성으로 데이터 센터간 Load Balancing이 가능하도록 하는건?
         - [카카오는 서로 다른곳에 각각 위치한 IDC라도 L3DSR 구성을 통해 Load Balancing이 가능하도록 사용하고 있습니다.](https://tech.kakao.com/2014/05/28/l3dsr/)
- - IDC가 하나다?
+- IDC가 하나다?
   - 최소한 랙 단위로 클러스터를 구성한다...
