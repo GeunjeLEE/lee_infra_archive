@@ -1,5 +1,5 @@
-## DMZ 구성해보기
-![image](https://user-images.githubusercontent.com/19552819/98813386-69c9db00-2467-11eb-8fb5-60911832b9a8.png)
+## 연습1
+![image](https://user-images.githubusercontent.com/19552819/98814102-929ea000-2468-11eb-8c32-3c8b58327468.png)
 
 ### note
 - Firewall은 IP/Port기반으로 필터링한다.
