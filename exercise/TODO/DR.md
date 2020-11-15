@@ -126,7 +126,8 @@
   - 백업 작업은 전체 백업보다 빠르지만 증분 백업보다 느리다.
     - 복원 작업은 전체 백업보다 느리지만 증분 백업보다 빠릅니다.
 
-# GSLB(Global Service Load Balancing) + HAProxy
+# 데이터 센터간 로드밸런싱
+GSLB(Global Service Load Balancing) + HAProxy
 참고 : https://d2.naver.com/helloworld/284659
 
 - global 서비스가 증가되면서 IDC 간 이중화 및 global 환경에서의 무정지 서비스를 위한 DR 시스템 구축이 필수 요구사항이 되었다. 
