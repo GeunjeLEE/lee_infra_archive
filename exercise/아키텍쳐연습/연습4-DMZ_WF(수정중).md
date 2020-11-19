@@ -1,5 +1,4 @@
-## 연습4
-- 지금까지 얻은 키워드를 종합해서 만들어보자.
+## 연습4 
 
 ![image](https://user-images.githubusercontent.com/19552819/99258638-35d22980-285c-11eb-8849-052d1ede1f23.png)
 ![image](https://user-images.githubusercontent.com/19552819/99258664-41255500-285c-11eb-92a9-86a925c51870.png)
