@@ -3,6 +3,7 @@ get_nodejs_webapp_src:
         - name: https://github.com/LeekeunJe/lee_sample_node_app.git
         - target: /home/lee_sample_node_app
         - branch: master
+        - force_reset: True
 
 npm_install:
     npm.installed:
