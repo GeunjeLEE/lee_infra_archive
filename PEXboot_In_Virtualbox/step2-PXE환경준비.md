@@ -125,7 +125,7 @@ TFTP는 xinetd 기반으로 실행된다.
 
 - tftp 서비스의 기본 설정이 disable=yes로 되어있기 때문에 이곳을 no로 변경한다.
 ```
-# cat /etc/xinetd.d
+# vim /etc/xinetd.d/tftp
 service tftp 
 {
         socket_type             = dgram
