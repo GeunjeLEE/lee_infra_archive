@@ -26,7 +26,7 @@ PXE는 시스템의 네트워크 인터페이스 카드(NIC)와 함께 작동하
    그러나 검색이 여전히 성공하지 못하면 마지막으로 "default" 파일을 찾는다.
 
    예를 들어 부팅 파일 이름이 /tftpboot/pxelinux.0 이고 이더넷 MAC 주소가 88:99:AA:BB:CC:DD이고 IP 주소가 192.0.2.91 인 경우<br>
-   부팅 이미지는 다음 위치에서 파일 이름을 찾습니다
+   부팅 이미지는 다음 위치에서 파일 이름을 찾는다.
    ```
    /tftpboot/pxelinux.cfg/01-88-99-aa-bb-cc-dd
    /tftpboot/pxelinux.cfg/C000025B
@@ -46,7 +46,7 @@ PXE는 시스템의 네트워크 인터페이스 카드(NIC)와 함께 작동하
 킥 스타트 파일에는 시스템에서 사용할 시간대, 드라이브를 분할하는 방법, 설치할 패키지 등이 포함되어 있다.
 
 따라서 설치가 시작될 때 준비된 킥 스타트 파일을 제공하면 사용자의 개입없이 자동으로 설치를 수행 할 수 있다.<br>
-이것은 한 번에 많은 시스템에 CentOS를 배포 할 때 특히 유용합니다.
+이것은 한 번에 많은 시스템에 CentOS를 배포 할 때 특히 유용하다.
 
 ## TFTP
 TFTP(Trivial File Transfer Protocol)란 이더넷을 이용하여 파일을 다운 받는 프로토콜 로직이다.<br>
@@ -106,8 +106,12 @@ Broadcast Flag가 0 이면 Unicast로 보내주며 단말의 MAC 어드레스에
 인텔 그래픽 카드를 사용하는 본체에 리눅스를 부팅하게되면 initrd.img의 인텔 그래픽 카드 모듈이 메모리에 로딩된다.
 
 ### syslinux
-SYSLINUX는 MS-DOS/Windows FAT 파일 시스템에서 실행 리눅스 운영체제용 부트로더.
+SYSLINUX는 MS-DOS / Windows FAT 파일 시스템에서 실행되는 Linux 운영체제용 부트로더.
 
 ### pxelinux.0
 syslinux 패키지에 포함되어있는 파일로 대부분의 시스템에는 기본적으로 설치가 되어있다.
 pxelinux.0 는 네트워크 부트 로더로 리눅스의 grub 이나 lilo 와 같은 역활을 한다.
+
+
+# 참고
+- https://programming.vip/docs/rhel7-centos7-pxe-kickstart-automation-system-installation.html
