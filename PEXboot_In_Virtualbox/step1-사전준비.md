@@ -11,9 +11,8 @@
 
 ## VirtualBox의 DHCP 서버 사용하지 않기
 
-PXE boot환경을 구성하기 위해 DHCP 서버를 설치해야하는데, <br>
-VirtualBox는 기본적으로 VirtualBox의 DHCP를 사용하기 때문에 네트워크 부팅 시, PXE의 DHCP를 찾아가는게 아니라<br>
-VirtualBox의 DHCP를 찾아간다.
+PXE boot환경을 구성하기 위해 DHCP 서버를 설치해야하는데, VirtualBox는 기본적으로 VirtualBox의 DHCP를 사용한다. <br>
+때문에 네트워크 부팅 시, PXE의 DHCP를 찾아가는게 아니라 VirtualBox의 DHCP를 찾아간다.
 
 때문에 이를 사용하지 않도록 한다.
 
@@ -22,7 +21,7 @@ VirtualBox의 DHCP를 찾아간다.
 
 이번 실습에서는, DHCP 서버를 사용하지 않는 Ether Adapter가 있었기 때문에 그것을 그대로 사용했다.
 
-사진-사전준비1
+<img width="800" alt="사전준비1" src="https://user-images.githubusercontent.com/19552819/100620147-6d16ff00-3361-11eb-9a48-12d7eb316bd9.png">
 
 ## VM의 네트워크 설정
 PXE 환경을 구성할 VM을 생성한다.
@@ -33,10 +32,10 @@ PXE 환경을 구성할 VM을 생성한다.
 
 `호스트전용 어댑터` 설정에서 위에서 설명한 것 처럼 DHCP 서버를 사용하지 않는 Ether Adapter를 선택한다.<br>
 또한 어댑터 종류는 `Pcnet-FAST III`을 선택한다.( Intel PRO/1000 시리즈는 PXE Boot을 지원하지 않는다고 한다.)<br>
-이렇게 되면, 운영체제 설치 시, 수동으로 IP설정을 잡아줘야 한다.
+이렇게 되면 운영체제 설치 시, 수동으로 IP설정을 잡아줘야 한다.
 
-사진-네트워크1
-사진-네트워크2
+<img width="800" alt="네트워크1" src="https://user-images.githubusercontent.com/19552819/100620154-6e482c00-3361-11eb-8022-f0d258444581.JPG">
+<img width="800" alt="네트워크2" src="https://user-images.githubusercontent.com/19552819/100620156-6ee0c280-3361-11eb-9dbe-2a9d20959090.png">
 
 ## 이후 과정
 이후 과정은 보통의 VM 작성과 같다.<br>
