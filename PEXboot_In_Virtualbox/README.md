@@ -109,9 +109,9 @@ Broadcast Flag가 0 이면 Unicast로 보내주며 단말의 MAC 어드레스에
 SYSLINUX는 MS-DOS / Windows FAT 파일 시스템에서 실행되는 Linux 운영체제용 부트로더.
 
 ### pxelinux.0
-syslinux 패키지에 포함되어있는 파일로 대부분의 시스템에는 기본적으로 설치가 되어있다.
-pxelinux.0 는 네트워크 부트 로더로 리눅스의 grub 이나 lilo 와 같은 역활을 한다.
+syslinux 패키지에 포함되어있는 파일로 대부분의 시스템에는 기본적으로 설치가 되어있다.<br>
+pxelinux.0 는 네트워크 부트 로더로 리눅스의 grub 이나 lilo 와 같은 역할을 한다.
 
 
 # 참고
-- https://programming.vip/docs/rhel7-centos7-pxe-kickstart-automation-system-installation.html
+- https://wiki.syslinux.org/wiki/index.php?title=PXELINUX
