@@ -29,10 +29,10 @@ ddns-update-style none;
 # option definitions common to all supported networks...
 option domain-name "example.org";
 
-# google dns 서버를 사용하기로 했습니다.
+# google dns 
 option domain-name-servers 8.8.8.8, 8.8.6.6;
 
-# gateway 입니다. 제 리눅스 박스입니다.
+# gateway 
 option routers 192.168.99.1;
 
 # subnet mask
