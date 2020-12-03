@@ -110,7 +110,7 @@ SYSLINUX는 MS-DOS / Windows FAT 파일 시스템에서 실행되는 Linux 운�
 
 ### pxelinux.0
 syslinux 패키지에 포함되어있는 파일로 대부분의 시스템에는 기본적으로 설치가 되어있다.<br>
-pxelinux.0 는 네트워크 부트 로더로 리눅스의 grub 이나 lilo 와 같은 역할을 한다.
+pxelinux.0 는 네트워크 부트로더로 리눅스의 grub 이나 lilo 와 같은 역할을 한다.
 
 
 # 참고

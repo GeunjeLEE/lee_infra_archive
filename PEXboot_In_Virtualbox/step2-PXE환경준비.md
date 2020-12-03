@@ -186,6 +186,9 @@ network, disk, package install 등의 설정을 자동화 한다.
 
 kickstart 파일은 위에 구성해두었던 파일 저장소에 배치하고, HTTP를 이용해 다운받게 된다.
 
+[KICKSTART SYNTAX REFERENCE](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/installation_guide/sect-kickstart-syntax)
+
+
 - kickstart 설정
   - 이번 실습에서는 NAT 인터페이스가 따로 있으므로, --nodefroute 옵션을 주어, enp0s3의 default gateway가 설정되지 않도록 했다.
 ```
