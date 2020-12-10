@@ -191,8 +191,10 @@ kickstart 파일은 위에 구성해두었던 파일 저장소에 배치하고, 
 
 - kickstart 설정
   - 이번 실습에서는 NAT 인터페이스가 따로 있으므로, --nodefroute 옵션을 주어, enp0s3의 default gateway가 설정되지 않도록 했다.
+  - 불필요하거나 적절하지 않은 설정이 많이 있다고 생각하지만, 우선 동작하는 것을 목표로 하기 때문에 일단 진행
 ```
 # vim /var/www/ks/centos.ks
+
 # System authorization information
 auth --enableshadow --passalgo=sha512
 # Use CDROM installation media
