@@ -1,6 +1,6 @@
 ### 개요
-ECR 레포지토리에 이미지를 업로드 할 때 발생하는 이미지 취약성 스캔 이벤트를<br>
-Cloudwatch로부터 감지하여 완료 된 스캔 결과를 Slack에 통지.
+ECR 레포지토리에 이미지를 업로드 했을 때 발생하는 이미지 취약성 Scan 이벤트를<br>
+Cloudwatch로부터 감지하여 Scan 결과를 Slack에 통지한다.
 
 ### terraform version
 - `>=0.12`

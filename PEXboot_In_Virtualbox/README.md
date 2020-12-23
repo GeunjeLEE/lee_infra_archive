@@ -3,10 +3,10 @@
 ## PXE
 컴퓨터가 네트워크를 통해 부팅 할 수 있는 방법에는 여러 가지가 있으며 PXE(Preboot Execution Environment)가 그 중 하나이다.
 
-PXE는 시스템의 네트워크 인터페이스 카드(NIC)와 함께 작동하여 부팅 장치처럼 작동한다.
+PXE는 시스템의 네트워크 인터페이스 카드(NIC)와 함께 작동하여 부팅 장치처럼 작동한다.<br>
 즉, 네트워크 인터페이스를 통해 머신을 부팅(운영체제를 설치)할 수 있게 해주는 환경이다.
 
-클라이언트의 PXE사용 NIC는 DHCP 서버로 브로드 캐스트 요청을 전송하고,
+클라이언트의 PXE사용 NIC는 DHCP 서버로 브로드 캐스트 요청을 전송하고,<br>
 이 요청은 클라이언트의 IP 주소와 TFTP 서버의 주소 및 TFTP 서버의 부팅 파일과 함께 반환된다.
 
 구체적인 작동 방식으로는
@@ -66,7 +66,7 @@ FTP는 정보 보안을 위해 TCP(Transmission Control Protoco)를 사용한다
 - 디스크없이 PC 부팅
 
 ## DHCP
-DHCP(Dynamic Host Configuration Protocol),말 그대로 동적 호스트 구성 프로토콜은 호스트 IP 구성 관리를 단순화하는 IP 표준이다.
+DHCP(Dynamic Host Configuration Protocol),말 그대로 동적 호스트 구성 프로토콜은 호스트 IP 구성 관리를 단순화하는 IP 표준이다.<br>
 동적 호스트 구성 프로토콜 표준에서는 DHCP 서버를 사용하여 IP 주소 및 관련된 기타 구성 세부 정보를 네트워크의 DHCP 사용 클라이언트에게 동적으로 할당하는 방법을 제공한다.
 
 DHCP 동작 원리는 크게 네 단계로 단말과 서버 간에 통신이 이루어진다.
